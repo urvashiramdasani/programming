@@ -1,0 +1,12 @@
+pd=data.frame("Name"=c("Senthil","Senthil","Sam","Sam"),"Month"=c("Jan","Feb","Jan","Feb"),"BS"=c(141.2,139.3,135.2,160.1),"BP"=c(90,78,80,81))
+pd_new=data.frame("Name"=c("Senthil","Ramesh","Sam"),"Department"=c("PSE","Data Analytics","PSE"))
+#print(pd_new)
+library(dplyr)
+pd_leftjoin1<-left_join(pd,pd_new,by="Name")
+print(pd_leftjoin1)
+pd_rightjoin1<-right_join(pd,pd_new,by="Name")
+print(pd_rightjoin1)
+pd_rightjoin2<-right_join(pd_new,pd,by="Name")
+print(pd_rightjoin2)
+pd_innerjoin1<-inner_join(pd,pd_new,by="Name") #order of column is by defualt left for every join
+print(pd_innerjoin1)

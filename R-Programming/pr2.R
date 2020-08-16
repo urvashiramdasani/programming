@@ -1,0 +1,5 @@
+x1<-matrix(1:9,3,3)
+x2<-matrix(11:19,3,3)
+m = rbind(apply(x1,1,max),apply(x2,1,mean))
+y = apply(m,1,sum)
+print(y)

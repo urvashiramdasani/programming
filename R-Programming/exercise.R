@@ -1,0 +1,12 @@
+A=matrix(c(3,5,-2,0),2,2, byrow = TRUE)
+print(A)
+B=matrix(c(1,10,3,-1,7,5),3,2,byrow=TRUE)
+print(B)
+C=matrix(c(2,3,4,0,1,2,-1,-2,-3,5,4,3),4,3,byrow=TRUE)
+print(C)
+D=matrix(c(1,7,3,4,4,6,4,7,12),3,3,byrow = TRUE)
+D[3,3]=13
+print(D[2,])
+print(D[,3])
+E=matrix(c(1:9),3,3,byrow = TRUE)
+print(E[1:2,c(1,3)])

@@ -1,0 +1,5 @@
+x = c(2:5)
+print(x)
+y = c(7,8)
+print(y)
+print(x * y)
