@@ -1,0 +1,249 @@
+SQL> select * from tab;
+
+TNAME                          TABTYPE CLUSTERID                                                    
+------------------------------ ------- ---------                                                    
+CLIENT                         TABLE                                                                
+PRODUCT                        TABLE                                                                
+SALESMAN                       TABLE                                                                
+SALES_ORDER                    TABLE                                                                
+SALES_ORDER_DETAILS            TABLE                                                                
+
+SQL> describe client
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CLIENTNO                                                       VARCHAR2(6)
+ NAME                                                           VARCHAR2(20)
+ CITY                                                           VARCHAR2(15)
+ PINCODE                                                        NUMBER(8)
+ STATE                                                          VARCHAR2(15)
+ BALDUE                                                         NUMBER(10,5)
+
+  1* select name from client where name like '_a%'
+SQL> ;
+  1* select name from client where name like '_a%'
+SQL> /
+
+NAME                                                                                                
+--------------------                                                                                
+Mamta Shah                                                                                          
+Harsh Desai                                                                                         
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select name, city, state from client where state !='Maharashtra'
+SQL> /
+
+NAME                 CITY            STATE                                                          
+-------------------- --------------- ---------------                                                
+Mamta Shah           Chennai         Tamil Nadu                                                     
+Ashni Joshi          Bangalore       Karnataka                                                      
+Deepak Sharma        Mangalore       Karnataka                                                      
+
+SQL> select * from product order by sellprice desc
+  2  ;
+
+PRODUC DESCRIPTION     PROFITPERCENT UNITMEASUR QTYONHAND REORDERLVL SELLPRICE COSTPRICE            
+------ --------------- ------------- ---------- --------- ---------- --------- ---------            
+P03453 Monitors                    6 Piece             10          3     12000     11200            
+P07868 Keyboards                   2 Piece             10          3      3150      3050            
+P06734 Mouse                       5 Piece             20          5      1050       500            
+P07865 1.22 Floppies               5 Pice             100         20       525       500            
+P00001 1.44 Floppies               5 Piece            100         20       525       500            
+
+
+SQL> describe sales_order
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ORDERNO                                                        VARCHAR2(6)
+ CLIENTNO                                                       VARCHAR2(6)
+ ORDERDATE                                                      DATE
+ SALESMANNO                                                     VARCHAR2(6)
+ DELAYTYPE                                                      CHAR(1)
+ BILLYN                                                         CHAR(1)
+ DELAYDATE                                                      DATE
+ ORDERSTATUS                                                    VARCHAR2(10)
+
+  1* select * from sales_order where delaydate like '%17'
+SQL> /
+
+ORDERN CLIENT ORDERDATE SALESM D B DELAYDATE ORDERSTATU                                             
+------ ------ --------- ------ - - --------- ----------                                             
+O19002 C02    25-JAN-17 S02    P N 27-JAN-17 Cancelled                                              
+O46865 C03    18-FEB-17 S03    F Y 20-FEB-17 Fulfilled                                              
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from sales_order where orderdate like '%17'
+SQL> /
+
+ORDERN CLIENT ORDERDATE SALESM D B DELAYDATE ORDERSTATU                                             
+------ ------ --------- ------ - - --------- ----------                                             
+O19002 C02    25-JAN-17 S02    P N 27-JAN-17 Cancelled                                              
+O46865 C03    18-FEB-17 S03    F Y 20-FEB-17 Fulfilled                                              
+
+SQL> select * from product where sellprice + 0.15*sellprice>500;
+
+PRODUC DESCRIPTION     PROFITPERCENT UNITMEASUR QTYONHAND REORDERLVL SELLPRICE COSTPRICE            
+------ --------------- ------------- ---------- --------- ---------- --------- ---------            
+P00001 1.44 Floppies               5 Piece            100         20       525       500            
+P03453 Monitors                    6 Piece             10          3     12000     11200            
+P06734 Mouse                       5 Piece             20          5      1050       500            
+P07865 1.22 Floppies               5 Pice             100         20       525       500            
+P07868 Keyboards                   2 Piece             10          3      3150      3050            
+
+
+  1* alter table product add (newsellprice number(3,2))
+SQL> /
+
+Table altered.
+
+SQL> select orderno from sales_order where orderno in (select orderno from sales_order_details);
+
+ORDERN                                                                                              
+------                                                                                              
+O19001                                                                                              
+O19002                                                                                              
+O46865                                                                                              
+
+SQL> select clientno, name from client where clientno not in (select clientno from sales_order);
+
+CLIENT NAME                                                                                         
+------ --------------------                                                                         
+C06    Deepak Sharma                                                                                
+                                                                             
+                                                                                                    
+SQL> set lines 250; 
+SQL> select product.*, sellprice*0.15 "newprice" from product where sellprice>500;
+
+PRODUC DESCRIPTION     PROFITPERCENT UNITMEASUR QTYONHAND REORDERLVL SELLPRICE COSTPRICE NEWSELLPRICE  newprice                                                                                                                                           
+------ --------------- ------------- ---------- --------- ---------- --------- --------- ------------ ---------                                                                                                                                           
+P00001 1.44 Floppies               5 Piece            100         20       525       500                  78.75                                                                                                                                           
+P03453 Monitors                    6 Piece             10          3     12000     11200                   1800                                                                                                                                           
+P06734 Mouse                       5 Piece             20          5      1050       500                  157.5                                                                                                                                           
+P07865 1.22 Floppies               5 Pice             100         20       525       500                  78.75                                                                                                                                           
+P07868 Keyboards                   2 Piece             10          3      3150      3050                  472.5                                                                                                                                           
+SQL> describe client;
+ Name                                                                                                                                            Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ CLIENTNO                                                                                                                                                 VARCHAR2(6)
+ NAME                                                                                                                                                     VARCHAR2(20)
+ CITY                                                                                                                                                     VARCHAR2(15)
+ PINCODE                                                                                                                                                  NUMBER(8)
+ STATE                                                                                                                                                    VARCHAR2(15)
+ BALDUE                                                                                                                                                   NUMBER(10,5)
+
+  1* insert into client values('C07','Vansh Kamdar','Ahmedabad',123456,'Gujarat',NULL)
+SQL> /
+
+1 row created.
+
+SQL> select * from client;
+
+CLIENT NAME                 CITY              PINCODE STATE              BALDUE                                                                                                                                                                           
+------ -------------------- --------------- --------- --------------- ---------                                                                                                                                                                           
+C01    Ivan Bayross         Mumbai             400054 Maharashtra         15000                                                                                                                                                                           
+C02    Mamta Shah           Chennai            780001 Tamil Nadu              0                                                                                                                                                                           
+C03    Chhaya Patel         Mumbai             400057 Maharashtra          5000                                                                                                                                                                           
+C04    Ashni Joshi          Bangalore          560001 Karnataka               0                                                                                                                                                                           
+C05    Harsh Desai          Mumbai             400060 Maharashtra          2000                                                                                                                                                                           
+C06    Deepak Sharma        Mangalore          560050 Karnataka               0                                                                                                                                                                           
+C07    Vansh Kamdar         Ahmedabad          123456 Gujarat                                                                                                                                                                                             
+
+7 rows selected.
+
+SQL> update client set baldue=0 where name='Vansh Kamdar';
+
+1 row updated.
+
+SQL> select * from client;
+
+CLIENT NAME                 CITY              PINCODE STATE              BALDUE                                                                                                                                                                           
+------ -------------------- --------------- --------- --------------- ---------                                                                                                                                                                           
+C01    Ivan Bayross         Mumbai             400054 Maharashtra         15000                                                                                                                                                                           
+C02    Mamta Shah           Chennai            780001 Tamil Nadu              0                                                                                                                                                                           
+C03    Chhaya Patel         Mumbai             400057 Maharashtra          5000                                                                                                                                                                           
+C04    Ashni Joshi          Bangalore          560001 Karnataka               0                                                                                                                                                                           
+C05    Harsh Desai          Mumbai             400060 Maharashtra          2000                                                                                                                                                                           
+C06    Deepak Sharma        Mangalore          560050 Karnataka               0                                                                                                                                                                           
+C07    Vansh Kamdar         Ahmedabad          123456 Gujarat                 0                                                                                                                                                                           
+
+7 rows selected.
+
+SQL> select delaydate from sales_order where extract(month from delaydate)=1;
+
+DELAYDATE                                                                                                                                                                                                                                                 
+---------                                                                                                                                                                                                                                                 
+20-JAN-16                                                                                                                                                                                                                                                 
+27-JAN-17                                                                                                                                                                                                                                                 
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select delaydate from sales_order where extract(year from delaydate)=2017
+SQL> /
+
+DELAYDATE                                                                                                                                                                                                                                                 
+---------                                                                                                                                                                                                                                                 
+27-JAN-17                                                                                                                                                                                                                                                 
+20-FEB-17                                                                                                                               
+
+  1* insert into sales_order values('O19001','C01','12-JAN-2016','S01','F','N','20-JAN-1916','In Process')
+SQL> /
+
+1 row created.                                                                                                                           
+
+SQL> select orderdate from sales_order where extract(year from orderdate)=2016;
+
+ORDERDATE                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+---------                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+12-JAN-16                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+03-APR-16                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+20-MAY-16                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+24-MAY-16                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+12-JAN-16                                                                                                                               
+
+  1* update client set city='Bangalore' where name like'Harsh%'
+SQL> /
+
+1 row updated.
+
+SQL> update salesman set city='Pune';
+
+4 rows updated.                                                                                              
+                                                                                                    
+SQL> delete salesman where salamt=3500;
+
+1 row deleted.
+
+SQL> rollback
+  2  ;
+
+Rollback complete.
+
+SQL> delete salesman where salamt=3500;                                                                        
+
+SQL> rollback;
+
+Rollback complete.                                                                                                                                                                                                                                            
+
+SQL> delete client where state='Tamil Nadu';
+
+1 row deleted.                                                                                                                                                                         
+
+SQL> alter table client
+  2  add (Telephone number(10));
+
+Table altered.
+
+SQL> commit
+  2  ;
+
+Commit complete.
+
+SQL> spool off
+
+to rename a table we use:
+alter table table-name
+rename table-name as another-table-name;

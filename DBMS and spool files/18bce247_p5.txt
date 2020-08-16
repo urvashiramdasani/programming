@@ -1,0 +1,183 @@
+SQL> describe employees;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                                        NUMBER(6)
+ FIRST_NAME                                         VARCHAR2(20)
+ LAST_NAME                                 NOT NULL VARCHAR2(25)
+ EMAIL                                     NOT NULL VARCHAR2(25)
+ PHONE_NUMBER                                       VARCHAR2(20)
+ HIRE_DATE                                 NOT NULL DATE
+ JOB_ID                                    NOT NULL VARCHAR2(40)
+ SALARY                                             NUMBER(8,2)
+ COMMISSION_PCT                                     NUMBER(2,2)
+ MANAGER_ID                                         NUMBER(6)
+ DEPARTMENT_ID                                      NUMBER(4)
+
+===================================================================================
+a)Write a query to find the salary of employees whose salary is greater than the salary of employee whose id is 100.
+===================================================================================
+
+SQL> select salary from employees where salary>(select salary from employees where employee_id=100);
+
+no rows selected
+
+SQL> @d:\prac_3.sql
+CREATE TABLE employees
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+SQL> set lines 250;
+
+=============================================================================
+b)Write a query to find the employees who all are earning the highest salary.
+=============================================================================
+
+SQL> select * from employees where salary=(select max(salary) from employees);
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID                                       SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID                                           
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------------------------------------- ---------- -------------- ---------- -------------                                           
+        100 Steven               King                      SKING                     515.123.4567         17-JUN-00 PRESIDENT                                     24000                       103            90                                           
+
+
+=================================================================================
+c)Write a query to find the departments in which the least salary is greater than the highest salary in the department of id 60.
+=================================================================================
+
+SQL> select department_id from employees where salary=(select min(salary) from employees where salary>(select max(salary) from employees where department_id=60));
+
+DEPARTMENT_ID                                                                                                                                                                                                                                             
+-------------                                                                                                                                                                                                                                             
+           30                                                                                                                                                                                                                                           
+
+SQL> select employee_id, salary, department_id from employees;
+
+EMPLOYEE_ID     SALARY DEPARTMENT_ID                                                                                                                                                                                                                      
+----------- ---------- -------------                                                                                                                                                                                                                      
+        100      24000            90                                                                                                                                                                                                                      
+        101      17000            90                                                                                                                                                                                                                      
+        102      17000            90                                                                                                                                                                                                                      
+        103       9000            60                                                                                                                                                                                                                      
+        104       6000            60                                                                                                                                                                                                                      
+        105       4800            60                                                                                                                                                                                                                      
+        106       4800            60                                                                                                                                                                                                                      
+        114      11000            30                                                                                                                                                                                                                      
+        119       2500            30                                                                                                                                                                                                                      
+        206       8300           110                                                                                                                                                                                                                     
+============================================================================
+a)Write a query to find the employees whose salary is equal to the salary of at least one employee in department of id 90.
+============================================================================
+
+SQL> select employee_id from employees where salary in (select salary from employees where department_id=90);
+
+EMPLOYEE_ID                                                                                                                                                                                                                                               
+-----------                                                                                                                                                                                                                                               
+        100                                                                                                                                                                                                                                               
+        102                                                                                                                                                                                                                                               
+        101                                                                                                                                                                                                                                 
+
+================================================================================
+b)Write a query to find the employees whose salary is greater than at least one employee in department of id 60. (Use ANY)
+================================================================================              
+
+SQL> select employee_id from employees where salary > any (select salary from employees where department_id=60);
+
+EMPLOYEE_ID                                                                                                                                                                                                                                               
+-----------                                                                                                                                                                                                                                               
+        100                                                                                                                                                                                                                                               
+        101                                                                                                                                                                                                                                               
+        102                                                                                                                                                                                                                                               
+        114                                                                                                                                                                                                                                               
+        103                                                                                                                                                                                                                                               
+        206                                                                                                                                                                                                                                               
+        104                                                                                                                                                                                                                                               
+
+7 rows selected.
+
+==============================================================================
+c)Write a query to find the employees whose salary is less than the salary of all employees in department of id 30. (Use ALL)
+===============================================================================
+
+SQL> select employee_id from employees where salary < all (select salary from employees where department_id=30);
+
+no rows selected
+
+SQL> select employee_id, salary, department_id, manager_id from employees;
+
+EMPLOYEE_ID     SALARY DEPARTMENT_ID MANAGER_ID                                                                                                                                                                                                           
+----------- ---------- ------------- ----------                                                                                                                                                                                                           
+        100      24000            90        103                                                                                                                                                                                                           
+        101      17000            90        100                                                                                                                                                                                                           
+        102      17000            90        100                                                                                                                                                                                                           
+        103       9000            60        102                                                                                                                                                                                                           
+        104       6000            60        103                                                                                                                                                                                                           
+        105       4800            60        103                                                                                                                                                                                                           
+        106       4800            60        103                                                                                                                                                                                                           
+        114      11000            30        100                                                                                                                                                                                                           
+        119       2500            30        114                                                                                                                                                                                                           
+        206       8300           110        205                                                                                                                                                                                                           
+
+10 rows selected.
+
+SQL> describe employees;
+ Name                                                                                                                                            Null?    Type
+ ----------------------------------------------------------------------------------------------------------------------------------------------- -------- ------------------------------------------------------------------------------------------------
+ EMPLOYEE_ID                                                                                                                                              NUMBER(6)
+ FIRST_NAME                                                                                                                                               VARCHAR2(20)
+ LAST_NAME                                                                                                                                       NOT NULL VARCHAR2(25)
+ EMAIL                                                                                                                                           NOT NULL VARCHAR2(25)
+ PHONE_NUMBER                                                                                                                                             VARCHAR2(20)
+ HIRE_DATE                                                                                                                                       NOT NULL DATE
+ JOB_ID                                                                                                                                          NOT NULL VARCHAR2(40)
+ SALARY                                                                                                                                                   NUMBER(8,2)
+ COMMISSION_PCT                                                                                                                                           NUMBER(2,2)
+ MANAGER_ID                                                                                                                                               NUMBER(6)
+ DEPARTMENT_ID                                                                                                                                            NUMBER(4) 
+
+
+SQL> select department_id from (select department_id from employees group by department_id having count(employee_id)>=1);
+
+DEPARTMENT_ID                                                                                                                                                                                                                                             
+-------------                                                                                                                                                                                                                                             
+           30                                                                                                                                                                                                                                             
+           90                                                                                                                                                                                                                                             
+          110                                                                                                                                                                                                                                             
+           60                                                                                                                                               
+
+
+SQL> select department_id from (select department_id from employees group by department_id having count(employee_id)=0);
+
+no rows selected
+
+SQL> spool off;

@@ -1,0 +1,38 @@
+Q . 1 : Find total number of orders placed by each salesman
+
+SQL> select salesmanno, count(orderno) from sales_order group by salesmanno;
+
+SALESM COUNT(ORDERNO)                                                                               
+------ --------------                                                                               
+S01                 2                                                                               
+S02                 2                                                                               
+S03                 1                                                                               
+S04                 1                                                                               
+
+Q . 2 : How many customers have no balance due?
+
+SQL> select count(clientno) from client where baldue=0;
+
+COUNT(CLIENTNO)                                                                                     
+---------------                                                                                     
+              2                                                                                                         
+
+Q . 3 : Which product is most expensive? (highest sell price)
+
+SQL> select productno, max(sellprice) from product group by productno;
+
+PRODUC MAX(SELLPRICE)                                                                               
+------ --------------                                                                               
+P06734           1050                                                                               
+P07868           3150                                                                               
+P03453          12000                                                                               
+P00001            525                                                                               
+P07865            525                                                                               
+
+ Q . 4 : Which product has highest profit per unit? (Product no with highest (sell_price-cost_price)/cost_price))
+
+SQL> select * from product where sellprice=(select max(sellprice) from product);
+
+PRODUC DESCRIPTION     PROFITPERCENT UNITMEASUR QTYONHAND REORDERLVL SELLPRICE COSTPRICE            
+------ --------------- ------------- ---------- --------- ---------- --------- ---------            
+NEWSELLPRICE                                                                                        

@@ -1,0 +1,132 @@
+SQL> select productno from product where (sellprice-costprice)/costprice=(select max((sellprice-costprice)/costprice) from product);
+
+PRODUC                                                                                              
+------                                                                                              
+P06734                                                                                              
+
+SQL> ed
+Wrote file afiedt.buf
+
+Q . 5 : Find product name of product has highest profit per unit. 
+
+  1* select description from product where (sellprice-costprice)/costprice=(select max((sellprice-costprice)/costprice) from product)
+SQL> /
+
+DESCRIPTION                                                                                         
+---------------                                                                                     
+Mouse                                                                                               
+
+SQL> describe sales_order_details;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ORDERNO                                                        VARCHAR2(6)
+ PRODUCTNO                                                      VARCHAR2(6)
+ QTYORDERED                                                     NUMBER(8)
+ PRODUCTRATE                                                    NUMBER(10,2)
+
+Q . 6 : Find total amount of order placed for each product.(sum of ProductRate*QtyOrdered)
+
+SQL> select sum(productrate*qtyordered) from sales_order_details group by productno;
+
+SUM(PRODUCTRATE*QTYORDERED)                                                                         
+---------------------------                                                                         
+                      16800                                                                         
+                      10500                                                                         
+                       9450                                                                         
+                       7350                                                                         
+
+SQL> ed
+Wrote file afiedt.buf
+
+Q . 7 : Display year-wise amount of order placed by each salesman.
+
+SQL> select sum(productrate*qtyordered) from sales_order left outer join sales_order_details on(sales_order.orderno=sales_order_details.orderno) group by extract(year from orderdate);
+
+SUM(PRODUCTRATE*QTYORDERED)                                                                         
+---------------------------                                                                         
+                      14700                                                                         
+                      29400                                                                         
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select extract(year from orderdate),sum(productrate*qtyordered) from sales_order left outer join sales_order_details on(sales_order.orderno=sales_order_details.orderno) group by extract(year from orderdate)
+SQL> /
+
+EXTRACT(YEARFROMORDERDATE) SUM(PRODUCTRATE*QTYORDERED)                                              
+-------------------------- ---------------------------                                              
+                      2017                       14700                                              
+                      2016                       29400                                              
+                                  
+
+SQL> select * from sales_order;
+
+ORDERN CLIENT ORDERDATE SALESM D B DELAYDATE ORDERSTATU                                             
+------ ------ --------- ------ - - --------- ----------                                             
+O19001 C01    12-JAN-16 S01    F N 20-JAN-16 In Process                                             
+O19002 C02    25-JAN-17 S02    P N 27-JAN-17 Cancelled                                              
+O46865 C03    18-FEB-17 S03    F Y 20-FEB-17 Fulfilled                                              
+O19003 C01    03-APR-16 S01    F Y 07-APR-16 Fulfilled                                              
+O46866 C04    20-MAY-16 S02    P N 22-MAY-16 Cancelled                                              
+O19008 C05    24-MAY-16 S04    F N 26-MAY-16 In Process                                             
+
+6 rows selected.
+
+Q . 8 : Identify salesman who placed any order of more than Rs.10000 
+
+  1* select salesmanno from sales_order natural join sales_order_details group by salesmanno having sum(productrate*qtyordered)>10000
+SQL> /
+
+SALESM                                                                                              
+------                                                                                              
+S01                                                                                                 
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from client natural join sales_order natural join sales_order_details;
+
+ORDERN CLIENT NAME                 CITY              PINCODE STATE              BALDUE TELEPHONE    
+------ ------ -------------------- --------------- --------- --------------- --------- ---------    
+ORDERDATE SALESM D B DELAYDATE ORDERSTATU PRODUC QTYORDERED PRODUCTRATE                             
+--------- ------ - - --------- ---------- ------ ---------- -----------                             
+O19001 C01    Ivan Bayross         Mumbai             400054 Maharashtra         15000              
+12-JAN-16 S01    F N 20-JAN-16 In Process P00001          4         525                             
+                                                                                                    
+O19001 C01    Ivan Bayross         Mumbai             400054 Maharashtra         15000              
+12-JAN-16 S01    F N 20-JAN-16 In Process P07965          2        8400                             
+                                                                                                    
+O19001 C01    Ivan Bayross         Mumbai             400054 Maharashtra         15000              
+12-JAN-16 S01    F N 20-JAN-16 In Process P07885          2        5250                             
+                                                                                                    
+O46865 C03    Chhaya Patel         Mumbai             400057 Maharashtra          5000              
+18-FEB-17 S03    F Y 20-FEB-17 Fulfilled  P07868          3        3150                             
+
+
+  1* select salesmanno from client natural join sales_order natural join sales_order_details where state='Maharashtra' group by salesmanno having sum(qtyordered*productrate)>10000
+SQL> /
+
+SALESM                                                                                              
+------                                                                                              
+S01                                                                                                 
+S03                                                                                                 
+S04                                                                                                 
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select salesmanno from client natural join sales_order natural join sales_order_details where state='Maharashtra' group by salesmanno having sum(qtyordered*productrate)>10000
+SQL> /
+
+SALESM                                                                                              
+------                                                                                              
+S01                                                                                                 
+S03                                                                                                 
+S04                                                                                                 
+
+SQL> commit;
+
+Commit complete.
+
+SQL> spool off;

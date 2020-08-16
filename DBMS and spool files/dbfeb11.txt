@@ -1,0 +1,184 @@
+SQL> update client set city="Bangalore" where name like "Harsh%";
+update client set city="Bangalore" where name like "Harsh%" // cannot use double quotes... REMEMBER!!!
+                                                   *
+ERROR at line 1:
+ORA-00904: "Harsh%": invalid identifier                                                                                                
+
+Query: To display date, salary in desired format of the employees whose last name begins with 'D' or 'K' 
+SQL> select upper(last_name) "Last Name", to_char(salary,'9,999.999') "Salary", to_char(hire_date,'DD/MM/YYYY') "hire date" from employees where substr(last_name,0,1)='K' or substr(last_name,0,1)='D';
+
+Last Name                 Salary     hire date                                                                                                                                                                                                            
+------------------------- ---------- ----------                                                                                                                                                                                                           
+KING                      ########## 17/06/2000                                                                                                                                                                                                           
+KOCHHAR                   ########## 18/06/2012                                                                                                                                                                                                           
+DE HAAN                   ########## 19/06/2017                                                                                                                                                                                                           
+
+Q . 13 : For each employee, display the first name, last name, salary and commission percentage. If an employee doesn’t earn a commission, display 0 instead of NULL.
+
+Query : To represent 0 in place of null in columns
+SQL> select first_name, last_name, salary, nvl(commission_pct,0) from employees;
+
+FIRST_NAME           LAST_NAME                    SALARY NVL(COMMISSION_PCT,0)                                                                                                                                                                            
+-------------------- ------------------------- --------- ---------------------                                                                                                                                                                            
+Steven               King                          24000                     0                                                                                                                                                                            
+Neena                Kochhar                       17000                     0                                                                                                                                                                            
+Lex                  De Haan                       17000                     0                                                                                                                                                                            
+Alexander            Hunold                         9000                     0                                                                                                                                                                            
+Bruce                Ernst                          6000                     0                                                                                                                                                                            
+David                Austin                         4800                     0                                                                                                                                                                            
+Valli                Pataballa                      4800                     0                                                                                                                                                                            
+Den                  Raphaely                      11000                     0                                                                                                                                                                            
+Karen                Colmenares                     2500                     0                                                                                                                                                                            
+William              Gietz                          8300                     0                                                                                                                                                                            
+
+  1* select nvl(commission_pct,1) from employees
+SQL> /
+
+NVL(COMMISSION_PCT,1)                                                                                                                                                                                                                                     
+---------------------                                                                                                                                                                                                                                     
+                    1                                                                                                                                                                                                                                     
+                    0                                                                                                                                                                                                                                     
+                    1                                                                                                                                                                                                                                     
+                    1                                                                                                                                                                                                                                     
+                    0                                                                                                                                                                                                                                     
+                    0                                                                                                                                                                                                                                     
+                    0                                                                                                                                                                                                                                     
+                    0                                                                                                                                                                                                                                     
+                    1                                                                                                                                                                                                                                     
+                    1                                                                                                                                                                                                                                     
+
+10 rows selected.
+
+Q . 14 : For each employee, display the first name, last name, salary and commission percentage. If an employee doesn’t earn a commission, display “No Commission” instead of NULL
+
+Query : To represent 'No Commission' in place of null in commission column. First we convert number to string data type.
+SQL> select first_name, last_name, salary, nvl(to_char(commission_pct,'9'),'No Commission') from employees;
+
+FIRST_NAME           LAST_NAME                    SALARY NVL(TO_CHAR(C                                                                                                                                                                                    
+-------------------- ------------------------- --------- -------------                                                                                                                                                                                    
+Steven               King                          24000 No Commission                                                                                                                                                                                    
+Neena                Kochhar                       17000  0                                                                                                                                                                                               
+Lex                  De Haan                       17000 No Commission                                                                                                                                                                                    
+Alexander            Hunold                         9000 No Commission                                                                                                                                                                                    
+Bruce                Ernst                          6000  0                                                                                                                                                                                               
+David                Austin                         4800  0                                                                                                                                                                                               
+Valli                Pataballa                      4800  0                                                                                                                                                                                               
+Den                  Raphaely                      11000  0                                                                                                                                                                                               
+Karen                Colmenares                     2500 No Commission                                                                                                                                                                                    
+William              Gietz                          8300 No Commission                                                                                                                                                                                    
+
+10 rows selected.
+
+Q . 15 : For each employee, display the first name, last name, salary, and a salary grade based on these conditions :
+a) if the salary is between 0 and 5000 – salary grade level is A
+b) if the salary is between 5001 and 15000 – salary grade level is B
+c) if the salary is between 15001 and 20000 – salary grade level is C
+d) for any other range – salary grade level is D
+
+Query : when-then in SQL, acts like if-else. 
+
+  1  select first_name, last_name, salary, (case when salary between 0 and 500 then 'A'
+  2  when salary between 5001 and 15000 then 'B'
+  3  when salary between 15001 and 20000 then 'C'
+  4  when salary>20000 then 'D'
+  5* end) "salary_grade" from employees
+SQL> /
+
+FIRST_NAME           LAST_NAME                    SALARY s                                                                                                                                                                                                
+-------------------- ------------------------- --------- -                                                                                                                                                                                                
+Steven               King                          24000 D                                                                                                                                                                                                
+Neena                Kochhar                       17000 C                                                                                                                                                                                                
+Lex                  De Haan                       17000 C                                                                                                                                                                                                
+Alexander            Hunold                         9000 B                                                                                                                                                                                                
+Bruce                Ernst                          6000 B                                                                                                                                                                                                
+David                Austin                         4800                                                                                                                                                                                                  
+Valli                Pataballa                      4800                                                                                                                                                                                                  
+Den                  Raphaely                      11000 B                                                                                                                                                                                                
+Karen                Colmenares                     2500                                                                                                                                                                                                  
+William              Gietz                          8300 B                                                                                                                                                                                                
+
+                                                                          
+
+Q . 17 :  Display all the employees who joined in the month of May.
+
+Query : To select employees who joined in May.
+  1* select * from employees where extract(month from hire_date)=5
+SQL> /
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                 EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID                                      SALARY COMMISSION_PCT MANAGER_ID DEPARTMENT_ID                                            
+----------- -------------------- ------------------------- ------------------------- -------------------- --------- ---------------------------------------- --------- -------------- ---------- -------------                                            
+        103 Alexander            Hunold                    AHUNOLD                   590.423.4567         20-MAY-16 IT PROG                                       9000                       102            60                                            
+        104 Bruce                Ernst                     BERNST                    590.423.4568         20-MAY-14 FINANCIAL MANAGER                             6000              0        103            60                                            
+
+
+Q . 16 : Display the first name, salary and round the salary to thousands.
+
+Query : Rounding the salary to nearest thousands.
+  1* select first_name, round(salary/1000)*1000 from employees
+SQL> /
+
+FIRST_NAME           ROUND(SALARY/1000)*1000                                                                                                                                                                                                              
+-------------------- -----------------------                                                                                                                                                                                                              
+Steven                                 24000                                                                                                                                                                                                              
+Neena                                  17000                                                                                                                                                                                                              
+Lex                                    17000                                                                                                                                                                                                              
+Alexander                               9000                                                                                                                                                                                                              
+Bruce                                   6000                                                                                                                                                                                                              
+David                                   5000                                                                                                                                                                                                              
+Valli                                   5000                                                                                                                                                                                                              
+Den                                    11000                                                                                                                                                                                                              
+Karen                                   3000                                                                                                                                                                                                              
+William                                 8000                                                                                                                                                                                                              
+
+10 rows selected.
+
+Q . 18 : Display the first word in job title.
+
+Query : To get first word from job title. using instr.
+SQL> select substr(job_id,0,instr(job_id,' ')) from employees;
+
+SUBSTR(JOB_ID,0,INSTR(JOB_ID,''))                                                                                                                                                                                                                         
+----------------------------------------                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                          
+VICE                                                                                                                                                                                                                                                      
+VICE                                                                                                                                                                                                                                                      
+IT                                                                                                                                                                                                                                                        
+FINANCIAL                                                                                                                                                                                                                                                 
+IT                                                                                                                                                                                                                                                        
+FINANCE                                                                                                                                                                                                                                                   
+SALES                                                                                                                                                                                                                                                     
+                                                                                                                                                                                                                                                          
+                                                                                                                                                                                                                                                          
+
+10 rows selected.
+
+Q. 20 : Display first name of the employees whose experience in more than 5 years.
+
+Query : Select employees having more than 5 years of experience.
+
+  1* select first_name from employees where months_between(current_date,hire_date)>60
+SQL> /
+
+FIRST_NAME                                                                                                                                                                                                                                                
+--------------------                                                                                                                                                                                                                                      
+Steven                                                                                                                                                                                                                                                    
+Neena                                                                                                                                                                                                                                                     
+Bruce                                                                                                                                                                                                                                                     
+David                                                                                                                                                                                                                                                     
+Valli                                                                                                                                                                                                                                                     
+Den                                                                                                                                                                                                                                                       
+Karen                                                                                                                                                                                                                                                     
+William                                                                                                                                                                                                                                                   
+
+8 rows selected.
+
+Q . 19 : Display the length of first name for employees whose last name contains character ‘b’ after the third position. (Without using like).
+
+Query : Display length of first name of employees having 'b' after the third position in last name.
+  1* select length(first_name) from employees where instr(last_name,'b')>3
+SQL> /
+
+LENGTH(FIRST_NAME)                                                                                                                                                                                                                                        
+------------------                                                                                                                                                                                                                                        
+                 5                                                                                                                                                                                                                                        
+Difference between drop, delete and truncate : see  yourself.                                                                                                                

@@ -1,0 +1,205 @@
+Query : To display the output of PL/SQL command on console
+
+SQL> set serveroutput on;
+
+===========================================================
+3) Write a PL/SQL block to calculate the incentive of an employee whose ID is 110.
+===========================================================
+
+SQL> declare
+  2  incentive number(6,2);
+  3  begin
+  4  select salary*0.12 into incentive from employees where employee_id=101;
+  5  dbms_output.put_line('Incentive : '||to_char(incentive));
+  6  end;
+  7  /
+Incentive : 2040                                                                
+
+PL/SQL procedure successfully completed.
+
+===============================================================
+4) Write a procedure code to insert new record in employee table.
+===============================================================
+
+SQL> create or replace procedure insert_employees
+  2  is
+  3  p_empid employees.employee_id%type;
+  4  p_fname employees.first_name%type;
+  5  p_lname employees.last_name%type;
+  6  p_email employees.email%type;
+  7  p_phone_number employees.phone_number%type;
+  8  p_hire_date employees.hire_date%type;
+  9  
+ 10  p_job_id employees.job_id%type;
+ 11  p_salary employees.salary%type;
+ 12  p_commission_pct employees.commission_pct%type;
+ 13  p_manager_id employees.manager_id%type;
+ 14  p_department_id employees.department_id%type;
+ 15  begin
+ 16  insert into employees values(&p_empid, '&p_fname', '&p_lname', '&p_email', '&p_phone_number', '&p_hire_date', '&p_job_id', &p_salary, &p_commission_pct, '&p_manager_id', '&p_department_id');
+ 17  commit;
+ 18  end insert_employees;
+ 19  /
+Enter value for p_empid: 143
+Enter value for p_fname: Jane
+Enter value for p_lname: Doe
+Enter value for p_email: jane.doe@example.com
+Enter value for p_phone_number: 1234567890
+Enter value for p_hire_date: 18-jan-2000
+Enter value for p_job_id: 786
+Enter value for p_salary: 20000
+Enter value for p_commission_pct: 12
+Enter value for p_manager_id: 701
+Enter value for p_department_id: 901
+old  16: insert into employees values(&p_empid, '&p_fname', '&p_lname', '&p_email', '&p_phone_number', '&p_hire_date', '&p_job_id', &p_salary, &p_commission_pct, '&p_manager_id', '&p_department_id');
+new  16: insert into employees values(143, 'Jane', 'Doe', 'jane.doe@example.com', '1234567890', '18-jan-2000', '786', 20000, 12, '701', '901');
+
+Procedure created.
+
+======================================================================
+5) Defining and Invoking a simple PL/SQL function which will count the total number of employees in the employee table.
+======================================================================
+
+SQL> create or replace function total_employees
+  2  return number is
+  3  total number(2):=0;
+  4  begin
+  5  select count(*) into total from employees;
+  6  return total;
+  7  end;
+  8  /
+
+Function created.
+
+Query : To check the working of total_employees()
+
+SQL> declare
+  2  begin
+  3  dbms_output.put_line('Total Number of Employees : '||total_employees());
+  4  end;
+  5  /
+Total Number of Employees : 10                                                  
+
+PL/SQL procedure successfully completed.
+
+============================================================================
+6) Create an Implicit Cursor to update the table and increase salary of each employee by 500.
+============================================================================
+
+SQL> begin
+  2  update employees set salary=salary+500;
+  3  if sql%found then
+  4  dbms_output.put_line('Employee Salary Updated!');
+  5  end if;
+  6  if sql%notfound then
+  7  dbms_output.put_line('Error in updating Employee Salary!');
+  8  end if;
+  9  end;
+ 10  /
+Employee Salary Updated!                                                        
+
+PL/SQL procedure successfully completed.
+
+===========================================================================
+7) Create an Explicit Cursor to retrieve employee name and salary each employee.
+===========================================================================
+
+SQL> declare cursor emp_cursor is
+  2  select first_name, last_name, salary from employees;
+  3  begin
+  4  for emp in emp_cursor
+  5  loop
+  6  dbms_output.put_line(emp.first_name||' '||emp.last_name||' '||emp.salary);
+  7  end loop;
+  8  end;
+  9  /
+Steven King 24500                                                               
+Neena Kochhar 17500                                                             
+Lex De Haan 17500                                                               
+Alexander Hunold 9500                                                           
+Bruce Ernst 6500                                                                
+David Austin 5300                                                               
+Valli Pataballa 5300                                                            
+Den Raphaely 11500                                                              
+Karen Colmenares 3000                                                           
+William Gietz 8800                                                              
+
+PL/SQL procedure successfully completed.
+
+===========================================================================
+8) Create a row level trigger for the EMPLOYEE table that would fire for INSERT or UPDATE or DELETE operations performed on the EMPLOYEE table. This trigger will display the salary difference between the old values and new values as we update the salary with above procedure created in 6th problem.
+============================================================================
+
+SQL> create or replace trigger emp_trigger
+  2  before delete or insert or update on employees
+  3  for each row
+  4  when (new.employee_id>0)
+  5  declare
+  6  sal number(2);
+  7  begin
+  8  sal:=:new.salary-:old.salary;
+  9  dbms_output.put_line('Salary Difference : '||sal);
+ 10  end;
+ 11  /
+
+Trigger created.
+
+=============================================================================
+9) Write a trigger to ensure that no employee of age less than 25 can be inserted in the database.
+=============================================================================
+
+SQL> create or replace trigger emp_age_diff
+  2  before insert on employees
+  3  for each row
+  4  begin
+  5  if new.age < 25 then
+  6  dbms_output.put_line('Age cannot be less than 25');
+  7  end if;
+  8  end;
+  9  /
+
+Warning: Trigger created with compilation errors.
+
+Query : Creating a table employees_backup with same attributes as employees
+
+SQL> create table employees_backup as select * from employees where 0=1;
+
+Table created.
+
+===================================================================
+10) Create a trigger which will work before deletion in employee table and create a duplicate copy of the record in another table employee_backup.
+===============================================================================
+
+SQL> create or replace trigger emp_backup
+  2  before delete on employees
+  3  for each row
+  4  begin
+  5  insert into employees_backup values(:old.employee_id, :old.first_name, :old.last_name, :old.email, :old.phone_number, :old.hire_date, :old.job_id, :old.salary, :old.commission_pct, :old.manager_id, :old.department_id);
+  6  end;
+  7  /
+
+Trigger created.
+
+Query : Checking the working of emp_backup trigger
+
+SQL> delete employees where employee_id=101;
+
+1 row deleted.
+
+SQL> select * from employees_backup;
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME                                      
+----------- -------------------- -------------------------                      
+EMAIL                     PHONE_NUMBER         HIRE_DATE                        
+------------------------- -------------------- ---------                        
+JOB_ID                                       SALARY COMMISSION_PCT MANAGER_ID   
+---------------------------------------- ---------- -------------- ----------   
+DEPARTMENT_ID                                                                   
+-------------                                                                   
+        101 Neena                Kochhar                                        
+NKOCHHAR                  515.123.4568         18-JUN-12                        
+VICE PRESIDENT                                17500              0        100   
+           90                                                                   
+                                                                                
+
+SQL> spool off;

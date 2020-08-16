@@ -1,0 +1,79 @@
+SQL> create user nu identified by nu;
+
+User created.
+
+SQL> grant create session to nu;
+
+Grant succeeded.
+
+SQL> grant select, update on employees to nu;
+
+Grant succeeded.
+
+SQL> select employee_id, salary from employees where employee_id<=105;
+
+EMPLOYEE_ID     SALARY                                                          
+----------- ----------                                                          
+        100      24500                                                          
+        101      17500                                                          
+        102      17500                                                          
+        103       9500                                                          
+        104       6500                                                          
+        105       5300                                                          
+
+6 rows selected. 
+
+
+SQL> update employees set salary=25000 where employee_id=100;
+
+1 row updated.
+
+SQL> select employee_id, salary from employees where employee_id<=105;
+
+EMPLOYEE_ID     SALARY                                                          
+----------- ----------                                                          
+        100      25000                                                          
+        101      17500                                                          
+        102      17500                                                          
+        103       9500                                                          
+        104       6500                                                          
+        105       5300                                                          
+
+6 rows selected.
+
+SQL> select employee_id, salary from employees where employee_id<=105;
+
+EMPLOYEE_ID     SALARY                                                          
+----------- ----------                                                          
+        100      25000                                                          
+        101      17500                                                          
+        102      17500                                                          
+        103       9500                                                          
+        104       6500                                                          
+        105       5300                                                          
+
+6 rows selected.
+
+SQL> insert into employees values(105, 'Jiyansh', 'Shah', 'js123@gmail.com', 11111, '15-aug-2019', 1, 100000, .25, 1,1);
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select employee_id, salary from employees where employee_id<=105;
+
+EMPLOYEE_ID     SALARY                                                          
+----------- ----------                                                          
+        100      25000                                                          
+        101      17500                                                          
+        102      17500                                                          
+        103       9500                                                          
+        104       6500                                                          
+        105       5300                                                          
+        105     100000                                                          
+
+7 rows selected.
+
+SQL> spool off;

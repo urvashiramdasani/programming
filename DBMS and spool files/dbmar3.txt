@@ -1,0 +1,184 @@
+SQL> select * from tab;
+
+TNAME                          TABTYPE CLUSTERID                                                    
+------------------------------ ------- ---------                                                    
+BIN$YUGks38JTNWFnwnOjKCoyA==$0 TABLE                                                                
+CLIENT                         TABLE                                                                
+EMPLOYEES                      TABLE                                                                
+PRODUCT                        TABLE                                                                
+SALES_ORDER                    TABLE                                                                
+SALES_ORDER_DETAILS            TABLE                                                                
+SMAN                           TABLE                                                                
+STUDENT                        TABLE                                                                
+
+8 rows selected.
+
+SQL> describe product;
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ PRODUCTNO                                                      VARCHAR2(6)
+ DESCRIPTION                                                    VARCHAR2(15)
+ PROFITPERCENT                                                  NUMBER(4,2)
+ UNITMEASURE                                                    VARCHAR2(10)
+ QTYONHAND                                                      NUMBER(8)
+ REORDERLVL                                                     NUMBER(8)
+ SELLPRICE                                                      NUMBER(8,2)
+ COSTPRICE                                                      NUMBER(8,2)
+ NEWSELLPRICE                                                   NUMBER(3,2)
+
+SQL> select description, qtyordered from product natural join sales_order_details;
+
+DESCRIPTION     QTYORDERED                                                                          
+--------------- ----------                                                                          
+1.44 Floppies            4                                                                          
+1.44 Floppies           10                                                                          
+Keyboards                3                                                                          
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select description, count(qtyordered) from product natural join sales_order_details
+SQL> /
+select description, count(qtyordered) from product natural join sales_order_details
+       *
+ERROR at line 1:
+ORA-00937: not a single-group group function 
+
+Q . 1 : Display the description and total quantity sold for each product.
+
+SQL> select description, qtyordered from product, sales_order_details where product.productno=sales_order_details.productno;
+
+DESCRIPTION     QTYORDERED                                                                          
+--------------- ----------                                                                          
+1.44 Floppies            4                                                                          
+1.44 Floppies           10                                                                          
+Keyboards                3                                                                          
+
+SQL> ed
+Wrote file afiedt.buf
+
+
+  1  select description, nvl(sum(qtyordered),0) 
+  2  from product left outer join sales_order_details 
+  3  on product.productno=sales_order_details.productno
+  4* group by description
+SQL> /
+
+DESCRIPTION     NVL(SUM(QTYORDERED),0)                                                              
+--------------- ----------------------                                                              
+1.44 Floppies                       14                                                              
+Keyboards                            3                                                              
+1.22 Floppies                        0                                                              
+Mouse                                0                                                              
+Monitors                             0                                                              
+
+Q . 2 : Calculate the average quantity sold for each client that has a maximum order value of 15000.00
+
+  1* select clientno, avg(qtyordered) from sales_order natural join sales_order_details where sales_order_details.qtyordered*sales_order_details.productrate<=15000 group by clientno 
+SQL> /
+
+CLIENT AVG(QTYORDERED)                                                                              
+------ ---------------                                                                              
+C02                 10                                                                              
+C01                  3                                                                              
+C03                  3                                                                              
+
+Q . 3 : Find out the total of all the billed orders for the month of May.
+
+  1* select orderno, sum(qtyordered*productrate) from sales_order natural join sales_order_details where sales_order.billyn='Y' and extract(month from sales_order.orderdate)=5 group by orderno
+SQL> /
+
+no rows selected
+
+
+SQL> select productno, qtyordered from client right outer join (select * from sales_order right outer join sales_order_details on sales_order.orderno=sales_order_details.orderno) on client.clientno=sales_order.clientno where client.name='Ivan Bayross' or client
+  2  /
+select productno, qtyordered from client right outer join (select * from sales_order right outer join sales_order_details on sales_order.orderno=sales_order_details.orderno) on client.clientno=sales_order.clientno where client.name='Ivan Bayross' or client
+                                                                                                                                                                                                                                                               *
+ERROR at line 1:
+ORA-00920: invalid relational operator 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select productno, qtyordered from client right outer join (select * from sales_order right outer join sales_order_details on sales_order.orderno=sales_order_details.orderno) on client.clientno=sales_order.clientno where client.name='Ivan Bayross' or client.name='Mamta Shah'
+SQL> /
+select productno, qtyordered from client right outer join (select * from sales_order right outer join sales_order_details on sales_order.orderno=sales_order_details.orderno) on client.clientno=sales_order.clientno where client.name='Ivan Bayross' or client.name='Mamta Shah'
+                                                                                                                                         
+
+  1  select productno, qtyordered from client,
+  2  sales_order, sales_order_details where 
+  3* client.name='Ivan Bayross' or client.name='Mamta Shah'
+SQL> /
+
+PRODUC QTYORDERED                                                                                   
+------ ----------                                                                                   
+P00001          4                                                                                   
+P00001          4                                                                                   
+P00001          4                                                                                   
+P00001          4                                                                                   
+P00001          4                                                                                   
+P00001          4                                                                                   
+P07965          2                                                                                   
+P07965          2                                                                                   
+P07965          2                                                                                   
+P07965          2                                                                                   
+P07965          2                                                                                   
+P07965          2                                                                                   
+P07885          2                                                                                   
+P07885          2                                                                                   
+P07885          2                                                                                   
+P07885          2                                                                                   
+P07885          2                                                                                   
+P07885          2                                                                                   
+P00001         10                                                                                   
+P00001         10                                                                                   
+P00001         10                                                                                   
+
+PRODUC QTYORDERED                                                                                   
+------ ----------                                                                                   
+P00001         10                                                                                   
+P00001         10                                                                                   
+P00001         10                                                                                   
+P07868          3                                                                                   
+P07868          3                                                                                   
+P07868          3                                                                                   
+P07868          3                                                                                   
+P07868          3                                                                                   
+P07868          3                                                                                   
+
+30 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  select productno, qtyordered from client,
+  2  sales_order, sales_order_details on client.clientno=sales_order.clientno and sales_order.orderno=sales_order_details.orderno where 
+  3* client.name='Ivan Bayross' or client.name='Mamta Shah'
+SQL> /
+sales_order, sales_order_details on client.clientno=sales_order.clientno and sales_order.orderno=sales_order_details.orderno where 
+                                 *
+ERROR at line 2:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select * from client
+  2  ;
+
+CLIENT NAME                 CITY              PINCODE STATE              BALDUE TELEPHONE           
+------ -------------------- --------------- --------- --------------- --------- ---------           
+C01    Ivan Bayross         Mumbai             400054 Maharashtra         15000                     
+C03    Chhaya Patel         Mumbai             400057 Maharashtra          5000                     
+C04    Ashni Joshi          Bangalore          560001 Karnataka               0                     
+C05    Harsh Desai          Bangalore          400060 Maharashtra          2000                     
+C06    Deepak Sharma        Mangalore          560050 Karnataka               0                     
+
+SQL> commit;
+
+Commit complete.
+
+SQL> spool off

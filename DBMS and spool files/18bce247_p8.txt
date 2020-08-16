@@ -1,0 +1,266 @@
+PRACTICAL 8 A------->
+
+Query : Create table member
+
+SQL> create table member
+  2  (member_id number(5) primary key,
+  3  member_name varchar(30),
+  4  member_address varchar2(50),
+  5  acc_open_date date,
+  6  membership_type varchar2(20),
+  7  fees_paid number(4),
+  8  max_books_allowed number(2),
+  9  penalty_amount number(7,2));
+
+Table created.
+
+Query : Add check constraint
+
+SQL> alter table member add constraint ck_membership_type check(membership_type in ('Annual', 'Lifetime', 'Half Yearly', 'Quarterly'));
+
+Table altered.
+
+Query : Create table books
+
+SQL> create table books (
+  2  book_no number(6) primary key,
+  3  book_name varchar2(30),
+  4  author_name varchar2(30),
+  5  cost number(7,2),
+  6  category char(10));
+
+Table created.
+
+Query : Create table issue
+
+SQL> create table issue(
+  2  lib_issue_id number(10) primary key,
+  3  book_no number(6),
+  4  member_id number(5),
+  5  issue_date date,
+  6  return_date date);
+
+Table created.
+
+Query : Add foreign key constraints
+
+SQL> alter table issue add constraint fk_book_no foreign key (book_no) references books(book_no);
+
+Table altered.
+
+
+SQL> alter table issue add constraint fk_member_id foreign key (member_id) references member(member_id);
+
+Table altered.
+
+------------------------------------------------------------------------
+1) Create a Read Only view “view1” to display Lib_Issue_Id, Book_Name, Member_Name, Author and Issue_date for all the books that have price between 500 – 750 and category as Database or RDBMS.
+--------------------------------------------------------------------------
+
+SQL> create view view1 as select lib_issue_id, b.book_name, m.member_name, b.author_name, i.issue_date from issue i, member m, books b where i.book_no = b.book_no and i.member_id = m.member_id and cost between 500 and 750 and category in('Database','RDBMS');
+
+View created.
+
+-------------------------------------------------------------------------
+2) Create a view “view2” check option to display all the books that has price greater than 500.
+--------------------------------------------------------------------------
+
+SQL> create view view2 as select * from books where cost>500 with check option;
+
+View created.
+
+---------------------------------------------------------------------------
+3) Perform DML operations to the view and evaluate the effect of Check Option.
+---------------------------------------------------------------------------
+
+SQL> insert into view2 values(1, 'The Story of my life', 'Hellan Keller', 200, 'RDBMS');
+insert into view2 values(1, 'The Story of my life', 'Hellan Keller', 200, 'RDBMS')
+            *
+ERROR at line 1:
+ORA-01402: view WITH CHECK OPTION where-clause violation 
+
+
+SQL> insert into view2 values(1, 'The Story of my life', 'Hellan Keller', 1200, 'RDBMS');
+
+1 row created.
+
+------------------------------------------------------------------------
+4) Create a simple view “view3” on Books table with Read only option and check that through view the update is possible or not in table. View should be able to display all the columns of book table.
+-------------------------------------------------------------------------
+ 
+SQL> create view view3 as select * from books with read only;
+
+View created.      
+
+Query : Checking update on read only option                                                        
+
+SQL> update view3 set author_name = 'Chetan Bhagat' where book_no=1;
+update view3 set author_name = 'Chetan Bhagat' where book_no=1
+                 *
+ERROR at line 1:
+ORA-42399: cannot perform a DML operation on a read-only view 
+
+--------------------------------------------------------------------------
+5) Create a simple view “view4” which should display Author_Name and total number (count) of books written by him.
+--------------------------------------------------------------------------
+
+SQL> create view view4 as select author_name, count(book_no) as total_books from books group by author_name;
+
+View created.
+
+PRACTICAL 8 B------------->
+
+Query : Create table student
+
+SQL> create table student (
+  2  student_code number(6) primary key,
+  3  name varchar2(30),
+  4  date_of_birth date,
+  5  course varchar2(20),
+  6  roll_no varchar2(20),
+  7  batch varchar2(20),
+  8  result varchar2(20));
+
+Table created.
+
+Query : Create all users
+
+SQL> create user F identified by F;
+
+User created.
+
+SQL> create user S identified by S;
+
+User created.
+
+SQL> create user N identified by N;
+
+User created.
+
+SQL> create user T identified by T;
+
+User created.
+
+SQL> create user W identified by W;
+
+User created.
+
+SQL> create user P identified by P;
+
+User created.
+
+SQL> create user J identified by J;
+
+User created.
+
+SQL> create user B identified by B;
+
+User created.
+
+SQL> create user K identified by K;
+
+User created.
+
+---------------------------------------------
+User F has retrieve over entire table
+---------------------------------------------
+
+SQL> grant select on student to F;
+
+Grant succeeded.
+
+---------------------------------------
+User  S has insert and delete on entire table.
+--------------------------------------------
+
+SQL> grant insert,delete on student to S;
+
+Grant succeeded.
+
+------------------------------------------------
+Every user has retrieve over his/her record only.
+-------------------------------------------------
+
+SQL> create view view_student as select * from student where student_code = user;
+
+View created.
+
+--------------------------------------------------------------------------
+User N has retrieve over entire table and update on Course and RollNo only
+--------------------------------------------------------------------------
+
+SQL> grant select, update(course, roll_no) on student to N;
+
+Grant succeeded.
+
+-------------------------------------------------------------------------
+User T has retrieve over Name, StudentCode and Result only.
+-------------------------------------------------------------------------
+
+SQL> create view view2_student as select name, student_code, result from student;
+
+View created.
+
+SQL> grant select on view2_student to T;
+
+Grant succeeded.
+
+-------------------------------------------------------------
+User W has retrieve as T and update as N
+-------------------------------------------------------------
+
+SQL> grant select on view2_student to W;
+
+Grant succeeded.
+
+SQL> grant update(course, roll_no) on student to W;
+
+Grant succeeded.
+
+---------------------------------------------------------------
+User P has all the privileges for BE-IT student’s records.
+---------------------------------------------------------------
+
+SQL> create view view3_student as select * from student where batch='BE-IT';
+
+View created.
+
+SQL> grant all on view3_student to P;
+
+Grant succeeded.
+
+-----------------------------------------------------------
+User J has delete on records for student of Batch B2
+-----------------------------------------------------------
+
+SQL> create view view4_student as select * from student where batch='B2';
+
+View created.
+
+SQL> grant delete on view4_student to J;
+
+Grant succeeded.
+
+--------------------------------------------------------------------------
+User B has update and delete on students record of courses where there are no more than 5 student
+--------------------------------------------------------------------------
+
+SQL> create view view5_student as select * from student where course in(select course from(select course, count(course) from student group by course having count(course)<=5));
+
+View created.
+
+SQL> grant update, delete on view5_student to B;
+
+Grant succeeded.
+
+-----------------------------------------------------------------
+User K has retrieve for Eldest and youngest student
+-----------------------------------------------------------------
+
+SQL> create view view6_student as select * from student where date_of_birth = (select max(date_of_birth) from student) or date_of_birth = (select max(date_of_birth) from student);
+
+View created.
+
+SQL> grant select on view6_student to K;
+
+Grant succeeded.

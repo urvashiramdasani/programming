@@ -1,0 +1,38 @@
+Query : we cannot modify column when data is present.
+
+SQL> alter table product modify (sellprice number(6,2));
+alter table product modify (sellprice number(6,2))
+                            *
+ERROR at line 1:
+ORA-01440: column to be modified must be empty to decrease precision or scale 
+
+
+SQL> select (case when instr(job_id,' ')=0 then job_id
+  2  when instr(job_id,' ')>0 then substr(job_id,0,instr(job_id,' '))
+  3  end) "job" from employees;
+
+job                                                                                                 
+----------------------------------------                                                            
+PRESIDENT                                                                                           
+VICE                                                                                                
+VICE                                                                                                
+IT                                                                                                  
+FINANCIAL                                                                                           
+IT                                                                                                  
+FINANCE                                                                                             
+SALES                                                                                               
+CLERK                                                                                               
+ACCOUNTANT                                                                                          
+
+10 rows selected.
+
+SQL> alter table salesman rename to sman;
+
+Table altered.
+
+Query : copying the table structure only, not data thats why we write 1=2 since it is false condition.
+
+  1* create table sales_order_new as select * from sales_order_details where 1=2
+SQL> /
+
+Table created.                                                               

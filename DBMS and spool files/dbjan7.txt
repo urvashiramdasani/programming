@@ -1,0 +1,79 @@
+Query = Changing Password 
+SQL> password
+Changing password for BCE18247
+Password changed
+
+Query = Creating table
+SQL> create table client(clientno varchar2(6), name varchar2(20), city varchar2(15), pincode number(8), state varchar2(15), baldue number(10,5));
+
+Table created.
+
+Query = Showing the definition
+SQL> describe client
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CLIENTNO                                                       VARCHAR2(6)
+ NAME                                                           VARCHAR2(20)
+ CITY                                                           VARCHAR2(15)
+ PINCODE                                                        NUMBER(8)
+ STATE                                                          VARCHAR2(15)
+ BALDUE                                                         NUMBER(10,5)
+
+SQL> /
+create table product (productno varchar2(6), description varchar2(15), profitpercent number(4,2), unitmeasure varchar2(10), qtyonhand number(8), reorderlvl number(8), sellprice number(8,2), costprice number(8,2))
+             *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object 
+Reason : product table already defined, hence the name cannot be used
+Solution : use different name for different tables
+
+Query = Opening the editor
+SQL> ed
+Wrote file afiedt.buf
+
+  1* create table product (productno varchar2(6), description varchar2(15), profitpercent number(4,2), unitmeasure varchar2(10), qtyonhand number(8), reorderlvl number(8), sellprice number(8,2), costprice number(8,2))
+SQL> create table salesman(salesmanno varchar2(6), salesmanname varchar2(20), address1 varchar2(30), address2 varchar2(30), city varchar2(20), pincode number(8), state varchar2(20), salamt number(8,2), tgttoget number(6,2), ytdsales number(6,2), remarks varchar
+  2  
+SQL> describe salesman
+ERROR:
+ORA-04043: object salesman does not exist 
+Reason : incomplete command, hence table not created
+Solution : Don't add semicolon in editor, use slash . (slash means execute above command and ; means end and exeute current command).
+
+Query = For executing above command 
+SQL> /
+
+Table created.
+
+Query = For adding a column in table
+SQL> alter table sales_order_details
+  2  add (money number(4,2));
+
+Table altered.
+
+Query = For viewing the final table after altering
+SQL> describe sales_order_details
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ORDERNO                                                        VARCHAR2(6)
+ PRODUCTNO                                                      VARCHAR2(6)
+ QTYORDERED                                                     NUMBER(8)
+ PRODUCTRATE                                                    NUMBER(10,2)
+ MONEY                                                          NUMBER(4,2)
+
+Query = for deleting a column from table
+SQL> alter table sales_order_details
+  2  drop column money;
+
+Table altered.
+
+SQL> describe sales_order_details
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ORDERNO                                                        VARCHAR2(6)
+ PRODUCTNO                                                      VARCHAR2(6)
+ QTYORDERED                                                     NUMBER(8)
+ PRODUCTRATE                                                    NUMBER(10,2)
+
+Query = for closing worksheet
+SQL> spool off

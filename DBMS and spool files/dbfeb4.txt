@@ -1,0 +1,280 @@
+Query : To run all the commands listed in the file.
+SQL> @d:\prac_3.sql
+
+Table created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+Q .1 : Display the first name in lower case and last name in upper case, for all employees whose employee number is in the range between 80 and 150
+
+Query : To display first name in lowercase and last name in uppercase with employee id between 80 and 150.
+  1* select lower(first_name) ,upper(last_name) from employees where employee_id between 80 and 150
+SQL> /
+
+LOWER(FIRST_NAME)    UPPER(LAST_NAME)                                                                                                                                                                                                                     
+-------------------- -------------------------                                                                                                                                                                                                            
+steven               KING                                                                                                                                                                                                                                 
+neena                KOCHHAR                                                                                                                                                                                                                              
+lex                  DE HAAN                                                                                                                                                                                                                              
+alexander            HUNOLD                                                                                                                                                                                                                               
+bruce                ERNST                                                                                                                                                                                                                                
+david                AUSTIN                                                                                                                                                                                                                               
+valli                PATABALLA                                                                                                                                                                                                                            
+den                  RAPHAELY                                                                                                                                                                                                                             
+karen                COLMENARES                                                                                                                                                                                                                           
+
+9 rows selected.
+
+Q . 2 : Generating new email address
+a) For each employee, display the first name, last name, and email address. The email address will be composed from the first letter of first name, concatenated with the three first letters of last name, concatenated with @oracle.com.
+
+Query : use of concatenate and substr functions.
+  1* select first_name, last_name, concat(concat(substr(first_name,0,1),substr(last_name,0,3)),'@oracle.com') "email" from employees
+SQL> /
+
+FIRST_NAME           LAST_NAME                 email                                                                                                                                                                                                      
+-------------------- ------------------------- ---------------                                                                                                                                                                                            
+Steven               King                      SKin@oracle.com                                                                                                                                                                                            
+Neena                Kochhar                   NKoc@oracle.com                                                                                                                                                                                            
+Lex                  De Haan                   LDe @oracle.com                                                                                                                                                                                            
+Alexander            Hunold                    AHun@oracle.com                                                                                                                                                                                            
+Bruce                Ernst                     BErn@oracle.com                                                                                                                                                                                            
+David                Austin                    DAus@oracle.com                                                                                                                                                                                            
+Valli                Pataballa                 VPat@oracle.com                                                                                                                                                                                            
+Den                  Raphaely                  DRap@oracle.com                                                                                                                                                                                            
+Karen                Colmenares                KCol@oracle.com                                                                                                                                                                                            
+William              Gietz                     WGie@oracle.com                                                                                                                                                                                            
+
+10 rows selected.
+
+SQL> ed
+Wrote file afiedt.buf
+
+b) For each employee, display the first name, last name, and email address. The email address will be composed from the first letter of first name, concatenated with the three last letters of last name, concatenated with @oracle.com.
+
+
+  1* select first_name, last_name, concat(concat(substr(first_name,0,1),substr(last_name,length(last_name)-3+1,3)),'@oracle.com') "email" from employees
+SQL> /
+
+FIRST_NAME           LAST_NAME                 email                                                                                                                                                                                                      
+-------------------- ------------------------- ---------------                                                                                                                                                                                            
+Steven               King                      Sing@oracle.com                                                                                                                                                                                            
+Neena                Kochhar                   Nhar@oracle.com                                                                                                                                                                                            
+Lex                  De Haan                   Laan@oracle.com                                                                                                                                                                                            
+Alexander            Hunold                    Aold@oracle.com                                                                                                                                                                                            
+Bruce                Ernst                     Bnst@oracle.com                                                                                                                                                                                            
+David                Austin                    Dtin@oracle.com                                                                                                                                                                                            
+Valli                Pataballa                 Vlla@oracle.com                                                                                                                                                                                            
+Den                  Raphaely                  Dely@oracle.com                                                                                                                                                                                            
+Karen                Colmenares                Kres@oracle.com                                                                                                                                                                                            
+William              Gietz                     Wetz@oracle.com                                                                                                                                                                                            
+
+10 rows selected.
+ 
+ Q . 3 : For each employee, display the first name concatenated with the last name, concatenated with hire date.
+
+SQL> select concat(concat(first_name,last_name),hire_date) "string" from employees;
+
+string                                                                                                                                                                                                                                                    
+------------------------------------------------------                                                                                                                                                                                                    
+StevenKing17-JUN-00                                                                                                                                                                                                                                       
+NeenaKochhar18-JUN-12                                                                                                                                                                                                                                     
+LexDe Haan19-JUN-17                                                                                                                                                                                                                                       
+AlexanderHunold20-MAY-16                                                                                                                                                                                                                                  
+BruceErnst20-MAY-14                                                                                                                                                                                                                                       
+DavidAustin17-SEP-01                                                                                                                                                                                                                                      
+ValliPataballa20-SEP-01                                                                                                                                                                                                                                   
+DenRaphaely01-SEP-90                                                                                                                                                                                                                                      
+KarenColmenares06-JUL-87                                                                                                                                                                                                                                  
+WilliamGietz06-JUL-05                                                                                                                                                                                                                                     
+
+10 rows selected.
+
+Q . 4 : Display the last name for all employees where last name’s length is greater than 8 characters.
+
+SQL> select last_name from employees where length(last_name)>8;
+
+LAST_NAME                                                                                                                                                                                                                                                 
+-------------------------                                                                                                                                                                                                                                 
+Pataballa                                                                                                                                                                                                                                                 
+Colmenares                                                                                                                                                                                                                                                
+Query : using replace in strings.
+
+Q . 5 : 5)For each employee, display the first name, last name, phone number and a new phone number. In the new phone number, replace all occurrences of 515 with 815.
+
+  1* select first_name, last_name, phone_number, replace(phone_number,'515','815') "phone_number_new" from employees
+SQL> /
+
+FIRST_NAME           LAST_NAME                 PHONE_NUMBER         phone_number_new                                                                                                                                                                      
+-------------------- ------------------------- -------------------- ------------------------------------------------------------                                                                                                                          
+Steven               King                      515.123.4567         815.123.4567                                                                                                                                                                          
+Neena                Kochhar                   515.123.4568         815.123.4568                                                                                                                                                                          
+Lex                  De Haan                   123.515.4569         123.815.4569                                                                                                                                                                          
+Alexander            Hunold                    590.423.4567         590.423.4567                                                                                                                                                                          
+Bruce                Ernst                     590.423.4568         590.423.4568                                                                                                                                                                          
+David                Austin                    590.423.4569         590.423.4569                                                                                                                                                                          
+Valli                Pataballa                 590.423.4560         590.423.4560                                                                                                                                                                          
+Den                  Raphaely                  515.127.4561         815.127.4561                                                                                                                                                                          
+Karen                Colmenares                515.127.4566         815.127.4566                                                                                                                                                                          
+William              Gietz                     515.123.8181         815.123.8181                                                                                                                                                                          
+
+10 rows selected.
+ 
+ Query : using floor and round to formatt salary.
+
+Q . 6 : For each employee, display first name, salary, salary after a raise of 12%, salary after a raise of 12%, expressed as a whole number, salary after a raise of 12%, round down to the nearest whole number.
+
+  1* select first_name, salary, salary*1.12 "new_salary", floor(salary*1.12) "new_salary_whole", round(salary*1.12,0) "new_salary_rounded" from employees
+SQL> /
+
+FIRST_NAME              SALARY new_salary new_salary_whole new_salary_rounded                                                                                                                                                                             
+-------------------- --------- ---------- ---------------- ------------------                                                                                                                                                                             
+Steven                   24000      26880            26880              26880                                                                                                                                                                             
+Neena                    17000      19040            19040              19040                                                                                                                                                                             
+Lex                      17000      19040            19040              19040                                                                                                                                                                             
+Alexander                 9000      10080            10080              10080                                                                                                                                                                             
+Bruce                     6000       6720             6720               6720                                                                                                                                                                             
+David                     4800       5376             5376               5376                                                                                                                                                                             
+Valli                     4800       5376             5376               5376                                                                                                                                                                             
+Den                      11000      12320            12320              12320                                                                                                                                                                             
+Karen                     2500       2800             2800               2800                                                                                                                                                                             
+William                   8300       9296             9296               9296                                                                                                                                                                             
+
+10 rows selected.
+
+Q . 7 : For each employee, display the first name, hire date, hire date minus 10 days, hire date plus one month, and the day difference between current date and hire date.
+
+Query : adding months to hire_date and finding difference.
+SQL> select first_name, hire_date, hire_date-10 "hire_date_minus_10", add_months(hire_date,1) "add_month", current_date-hire_date "current-hire" from employees;
+
+FIRST_NAME           HIRE_DATE hire_date add_month current-hire                                                                                                                                                                                           
+-------------------- --------- --------- --------- ------------                                                                                                                                                                                           
+Steven               17-JUN-00 07-JUN-00 17-JUL-00    7171.4117                                                                                                                                                                                           
+Neena                18-JUN-12 08-JUN-12 18-JUL-12    2787.4117                                                                                                                                                                                           
+Lex                  19-JUN-17 09-JUN-17 19-JUL-17    960.41172                                                                                                                                                                                           
+Alexander            20-MAY-16 10-MAY-16 20-JUN-16    1355.4117                                                                                                                                                                                           
+Bruce                20-MAY-14 10-MAY-14 20-JUN-14    2086.4117                                                                                                                                                                                           
+David                17-SEP-01 07-SEP-01 17-OCT-01    6714.4117                                                                                                                                                                                           
+Valli                20-SEP-01 10-SEP-01 20-OCT-01    6711.4117                                                                                                                                                                                           
+Den                  01-SEP-90 22-AUG-90 01-OCT-90    10748.412                                                                                                                                                                                           
+Karen                06-JUL-87 26-JUN-87 06-AUG-87    11901.412                                                                                                                                                                                           
+William              06-JUL-05 26-JUN-05 06-AUG-05    5326.4117                                                                                                                                                                                           
+
+10 rows selected.
+ 
+Q . 8 : For each employee, display the first name, last name, hire date, number of months he works in the company, and number of years he works in the company. 
+ 
+Query : using months_between function to find the number of months between two dates.
+
+  1* select first_name, last_name, hire_date, months_between(current_date,hire_date) "months_worked", extract(year from current_date)-extract(year from hire_date) "years" from employees
+SQL> /
+
+FIRST_NAME           LAST_NAME                 HIRE_DATE months_worked     years                                                                                                                                                                          
+-------------------- ------------------------- --------- ------------- ---------                                                                                                                                                                          
+Steven               King                      17-JUN-00     235.59424        20                                                                                                                                                                          
+Neena                Kochhar                   18-JUN-12     91.561978         8                                                                                                                                                                          
+Lex                  De Haan                   19-JUN-17      31.52972         3                                                                                                                                                                          
+Alexander            Hunold                    20-MAY-16     44.497462         4                                                                                                                                                                          
+Bruce                Ernst                     20-MAY-14     68.497462         6                                                                                                                                                                          
+David                Austin                    17-SEP-01     220.59424        19                                                                                                                                                                          
+Valli                Pataballa                 20-SEP-01     220.49746        19                                                                                                                                                                          
+Den                  Raphaely                  01-SEP-90     353.11037        30                                                                                                                                                                          
+Karen                Colmenares                06-JUL-87     390.94907        33                                                                                                                                                                          
+William              Gietz                     06-JUL-05     174.94907        15                                                                                                                                                                          
+
+10 rows selected.
+
+Q . 9 : For each employee, display the first name, hire date, and hire date plus one year.
+
+Query : we can add anynumber to dates and then display the result.
+
+  1* select first_name, hire_date, hire_date+365 "one_year" from employees
+SQL> /
+
+FIRST_NAME           HIRE_DATE one_year                                                                                                                                                                                                                   
+-------------------- --------- ---------                                                                                                                                                                                                                  
+Steven               17-JUN-00 17-JUN-01                                                                                                                                                                                                                  
+Neena                18-JUN-12 18-JUN-13                                                                                                                                                                                                                  
+Lex                  19-JUN-17 19-JUN-18                                                                                                                                                                                                                  
+Alexander            20-MAY-16 20-MAY-17                                                                                                                                                                                                                  
+Bruce                20-MAY-14 20-MAY-15                                                                                                                                                                                                                  
+David                17-SEP-01 17-SEP-02                                                                                                                                                                                                                  
+Valli                20-SEP-01 20-SEP-02                                                                                                                                                                                                                  
+Den                  01-SEP-90 01-SEP-91                                                                                                                                                                                                                  
+Karen                06-JUL-87 05-JUL-88                                                                                                                                                                                                                  
+William              06-JUL-05 06-JUL-06                                                                                                                                                                                                                  
+
+10 rows selected.
+
+Q . 10 : For each employee, display the first name, hire date, hire date rounded up to the nearest year, and hire date rounded up to the nearest month.
+
+Query : rounding years, just see output. 
+
+  1* select first_name, hire_date, round(hire_date,'year') "round_year", round(hire_date,'month') from employees
+SQL> /
+
+FIRST_NAME           HIRE_DATE round_yea ROUND(HIR                                                                                                                                                                                                        
+-------------------- --------- --------- ---------                                                                                                                                                                                                        
+Steven               17-JUN-00 01-JAN-00 01-JUL-00                                                                                                                                                                                                        
+Neena                18-JUN-12 01-JAN-12 01-JUL-12                                                                                                                                                                                                        
+Lex                  19-JUN-17 01-JAN-17 01-JUL-17                                                                                                                                                                                                        
+Alexander            20-MAY-16 01-JAN-16 01-JUN-16                                                                                                                                                                                                        
+Bruce                20-MAY-14 01-JAN-14 01-JUN-14                                                                                                                                                                                                        
+David                17-SEP-01 01-JAN-02 01-OCT-01                                                                                                                                                                                                        
+Valli                20-SEP-01 01-JAN-02 01-OCT-01                                                                                                                                                                                                        
+Den                  01-SEP-90 01-JAN-91 01-SEP-90                                                                                                                                                                                                        
+Karen                06-JUL-87 01-JAN-88 01-JUL-87                                                                                                                                                                                                        
+William              06-JUL-05 01-JAN-06 01-JUL-05                                                                                                                                                                                                        
+
+10 rows selected.
+
+Q . 11 : For each employee, display the first name, the day of his hire date, and the year of his hire date.
+
+SQL> select first_name, extract(day from hire_date) , extract(year from hire_date) from employees;
+
+FIRST_NAME           EXTRACT(DAYFROMHIRE_DATE) EXTRACT(YEARFROMHIRE_DATE)                                                                                                                                                                                 
+-------------------- ------------------------- --------------------------                                                                                                                                                                                 
+Steven                                      17                       2000                                                                                                                                                                                 
+Neena                                       18                       2012                                                                                                                                                                                 
+Lex                                         19                       2017                                                                                                                                                                                 
+Alexander                                   20                       2016                                                                                                                                                                                 
+Bruce                                       20                       2014                                                                                                                                                                                 
+David                                       17                       2001                                                                                                                                                                                 
+Valli                                       20                       2001                                                                                                                                                                                 
+Den                                          1                       1990                                                                                                                                                                                 
+Karen                                        6                       1987                                                                                                                                                                                 
+William                                      6                       2005                                                                                                                                                                                 
+
+10 rows selected. 
+
+Q . 12 : Display the last name in upper case, the salary in format model : ‘9,999.999’, and hire date in format model: ‘DD/MM/YYYY’, for all employees whose last name begins with the letter D or K (without using like).
+
+Query : to_char is used to format salary and hire_date.

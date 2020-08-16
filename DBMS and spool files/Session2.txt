@@ -1,0 +1,71 @@
+*****NOTE : salary is increased by 500 due to update in Practical 9 (PL/SQL)****
+
+SQL> connect nu/nu;
+Connected.
+SQL> set transaction isolation level read committed;
+
+Transaction set.
+
+SQL> select employee_id, salary from system.employees where employee_id<=105;
+
+EMPLOYEE_ID     SALARY                                                          
+----------- ----------                                                          
+        100      24500                                                          
+        101      17500                                                          
+        102      17500                                                          
+        103       9500                                                          
+        104       6500                                                          
+        105       5300                                                          
+
+6 rows selected.
+
+SQL> update system.employees set salary=20000 where employee_id=101;
+
+1 row updated.
+
+SQL> select employee_id, salary from system.employees where employee_id<=105;
+
+EMPLOYEE_ID     SALARY                                                          
+----------- ----------                                                          
+        100      24500                                                          
+        101      20000                                                          
+        102      17500                                                          
+        103       9500                                                          
+        104       6500                                                          
+        105       5300                                                          
+
+6 rows selected.
+
+
+SQL> select employee_id, salary from system.employees where employee_id<=105;
+
+EMPLOYEE_ID     SALARY                                                          
+----------- ----------                                                          
+        100      24500                                                          
+        101      20000                                                          
+        102      17500                                                          
+        103       9500                                                          
+        104       6500                                                          
+        105       5300                                                          
+
+6 rows selected.
+
+SQL> update system.employees set salary=20000 where employee_id=100;
+
+1 row updated.
+
+SQL> select employee_id, salary from system.employees where employee_id<=105;
+
+EMPLOYEE_ID     SALARY                                                          
+----------- ----------                                                          
+        100      20000                                                          
+        101      20000                                                          
+        102      17500                                                          
+        103       9500                                                          
+        104       6500                                                          
+        105       5300                                                          
+        105     100000                                                          
+
+7 rows selected.
+
+SQL> spool off;

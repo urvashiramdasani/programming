@@ -1,0 +1,466 @@
+SQL> select * tab
+  2  
+SQL> select * from tab;
+
+TNAME                          TABTYPE CLUSTERID                                                    
+------------------------------ ------- ---------                                                    
+CLIENT                         TABLE                                                                
+PRODUCT                        TABLE                                                                
+SALESMAN                       TABLE                                                                
+SALES_ORDER                    TABLE                                                                
+SALES_ORDER_DETAILS            TABLE                                                                
+
+SQL> describe client
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CLIENTNO                                                       VARCHAR2(6)
+ NAME                                                           VARCHAR2(20)
+ CITY                                                           VARCHAR2(15)
+ PINCODE                                                        NUMBER(8)
+ STATE                                                          VARCHAR2(15)
+ BALDUE                                                         NUMBER(10,5)
+
+SQL> insert into client values('C01','Ivan Bayross','Mumbai',40054,'Maharashtra',15000);
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into client values('C02','Mamta Shah','Chennai',780001,'Tamil Nadu',0)
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into client values('C03','Chhaya Patel','Mumbai',400057,'Maharashtra',5000)
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into client values('C04', 'Ashni Joshi', 'Bangalore', 560001 ,'Karnataka' 0)
+SQL> /
+insert into client values('C04', 'Ashni Joshi', 'Bangalore', 560001 ,'Karnataka' 0)
+                                                                                 *
+ERROR at line 1:
+ORA-00917: missing comma 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into client values('C04', 'Ashni Joshi', 'Bangalore', 560001 ,'Karnataka', 0)
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into client values('C05', 'Harsh Desai', 'Mumbai', 400060 ,'Maharashtra' ,2000)
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into client values('C06', 'Deepak Sharma', 'Mangalore' ,560050 ,'Karnataka', 0)
+SQL> /
+
+1 row created.
+
+SQL> describe product
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ PRODUCTNO                                                      VARCHAR2(6)
+ DESCRIPTION                                                    VARCHAR2(15)
+ PROFITPERCENT                                                  NUMBER(4,2)
+ UNITMEASURE                                                    VARCHAR2(10)
+ QTYONHAND                                                      NUMBER(8)
+ REORDERLVL                                                     NUMBER(8)
+ SELLPRICE                                                      NUMBER(8,2)
+ COSTPRICE                                                      NUMBER(8,2)
+
+SQL> insert into product values('P00001','1.44 Floppies',5,'Piece',100,20,525,500);
+
+1 row created.
+
+SQL> insert into product values(&pno,&des,&proper,&unit,&qty,&level,&sell,&cost);
+Enter value for pno: 'P03453'
+Enter value for des: 'Monitors'
+Enter value for proper: 6
+Enter value for unit: 'Piece'
+Enter value for qty: 10
+Enter value for level: 3
+Enter value for sell: 12000
+Enter value for cost: 11200
+old   1: insert into product values(&pno,&des,&proper,&unit,&qty,&level,&sell,&cost)
+new   1: insert into product values('P03453','Monitors',6,'Piece',10,3,12000,11200)
+
+1 row created.
+
+SQL> /
+Enter value for pno: 'P06734'
+Enter value for des: 'Mouse'
+Enter value for proper: 5
+Enter value for unit: 'Piece'
+Enter value for qty: 20
+Enter value for level: 5
+Enter value for sell: 1050
+Enter value for cost: 500
+old   1: insert into product values(&pno,&des,&proper,&unit,&qty,&level,&sell,&cost)
+new   1: insert into product values('P06734','Mouse',5,'Piece',20,5,1050,500)
+
+1 row created.
+
+SQL> /
+Enter value for pno: 'P07865'
+Enter value for des: '1.22 Floppies'
+Enter value for proper: 5
+Enter value for unit: 'Pice'
+Enter value for qty: 100
+Enter value for level: 20
+Enter value for sell: 525
+Enter value for cost: 500
+old   1: insert into product values(&pno,&des,&proper,&unit,&qty,&level,&sell,&cost)
+new   1: insert into product values('P07865','1.22 Floppies',5,'Pice',100,20,525,500)
+
+1 row created.
+
+SQL> /
+Enter value for pno: 'P07868'
+Enter value for des: 'Keyboards'
+Enter value for proper: 2
+Enter value for unit: 'Piece'
+Enter value for qty: 10
+Enter value for level: 3
+Enter value for sell: 3150
+Enter value for cost: 3050
+old   1: insert into product values(&pno,&des,&proper,&unit,&qty,&level,&sell,&cost)
+new   1: insert into product values('P07868','Keyboards',2,'Piece',10,3,3150,3050)
+
+1 row created.
+
+SQL> describe salesman
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ SALESMANNO                                                     VARCHAR2(6)
+ SALESMANNAME                                                   VARCHAR2(20)
+ ADDRESS1                                                       VARCHAR2(30)
+ ADDRESS2                                                       VARCHAR2(30)
+ CITY                                                           VARCHAR2(20)
+ PINCODE                                                        NUMBER(8)
+ STATE                                                          VARCHAR2(20)
+ SALAMT                                                         NUMBER(8,2)
+ TGTTOGET                                                       NUMBER(6,2)
+ YTDSALES                                                       NUMBER(6,2)
+ REMARKS                                                        VARCHAR2(60)
+
+SQL> insert into salesman values(&no,&name,&add1,&add2,&city,&pin,&state,&sal,&tgt,&ytd,&rem);
+Enter value for no: 'S01'
+Enter value for name: 'Aman'
+Enter value for add1: 'A/14'
+Enter value for add2: 'Worli'
+Enter value for city: 'Mumbai'
+Enter value for pin: 400002
+Enter value for state: 'Maharashtra'
+Enter value for sal: 3000
+Enter value for tgt: 100
+Enter value for ytd: 50
+Enter value for rem: 'Good'
+old   1: insert into salesman values(&no,&name,&add1,&add2,&city,&pin,&state,&sal,&tgt,&ytd,&rem)
+new   1: insert into salesman values('S01','Aman','A/14','Worli','Mumbai',400002,'Maharashtra',3000,100,50,'Good')
+
+1 row created.
+
+SQL> /
+Enter value for no: 'S02'
+Enter value for name: 'Omkar'
+Enter value for add1: '65'
+Enter value for add2: 'Nariman'
+Enter value for city: 'Mumbai'
+Enter value for pin: 400001
+Enter value for state: 'Maharashtra'
+Enter value for sal: 3000
+Enter value for tgt: 200
+Enter value for ytd: 100
+Enter value for rem: 'Good'
+old   1: insert into salesman values(&no,&name,&add1,&add2,&city,&pin,&state,&sal,&tgt,&ytd,&rem)
+new   1: insert into salesman values('S02','Omkar','65','Nariman','Mumbai',400001,'Maharashtra',3000,200,100,'Good')
+
+1 row created.
+
+SQL> /
+Enter value for no: 'S03'
+Enter value for name: 'Raj'
+Enter value for add1: 'P-7'
+Enter value for add2: 'Bandra'
+Enter value for city: 'Mumbai'
+Enter value for pin: 400032
+Enter value for state: 'Maharshtra'
+Enter value for sal: 3000
+Enter value for tgt: 200
+Enter value for ytd: 100
+Enter value for rem: 'Good'
+old   1: insert into salesman values(&no,&name,&add1,&add2,&city,&pin,&state,&sal,&tgt,&ytd,&rem)
+new   1: insert into salesman values('S03','Raj','P-7','Bandra','Mumbai',400032,'Maharshtra',3000,200,100,'Good')
+
+1 row created.
+
+SQL> /
+Enter value for no: 'S04'
+Enter value for name: 'Ashish'
+Enter value for add1: 'A/5'
+Enter value for add2: 'Juhu'
+Enter value for city: 'Mumbai'
+Enter value for pin: 40004
+Enter value for state: 'Maharhtra'
+Enter value for sal: 3500
+Enter value for tgt: 200
+Enter value for ytd: 150
+Enter value for rem: 'Good'
+old   1: insert into salesman values(&no,&name,&add1,&add2,&city,&pin,&state,&sal,&tgt,&ytd,&rem)
+new   1: insert into salesman values('S04','Ashish','A/5','Juhu','Mumbai',40004,'Maharhtra',3500,200,150,'Good')
+
+1 row created.
+
+SQL> describe sales_order
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ORDERNO                                                        VARCHAR2(6)
+ CLIENTNO                                                       VARCHAR2(6)
+ ORDERDATE                                                      DATE
+ SALESMANNO                                                     VARCHAR2(6)
+ DELAYTYPE                                                      CHAR(1)
+ BILLYN                                                         CHAR(1)
+ DELAYDATE                                                      DATE
+ ORDERSTATUS                                                    VARCHAR2(10)
+
+SQL> insert into sales_order values('O19001','C01','12-01-16','S01','F','N','20-01-16','In Process');
+insert into sales_order values('O19001','C01','12-01-16','S01','F','N','20-01-16','In Process')
+                                              *
+ERROR at line 1:
+ORA-01843: not a valid month 
+
+
+SQL> insert into sales_order values('O19001','C01','12-jan-16','S01','F','N','20-jan-16','In Process');
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into sales_order values('O19002', 'C02', '25-jan-17', 'S02', 'P', 'N', '27-jan-17', 'Cancelled')
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into sales_order values('O46865', 'C03', '18-feb-17', 'S03', 'F', 'Y', '20-feb-17', 'Fulfilled')
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into sales_order values(
+  2* 'O19003', 'C01', '03-apr-16', 'S01', 'F', 'Y', '07-apr-16', 'Fulfilled')
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into sales_order values(
+  2* 'O46866', 'C04', '20-may-16', 'S02', 'P', 'N', '22-may-16', 'Cancelled')
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1  insert into sales_order values(
+  2* 'O19008', 'C05', '24-may-16', 'S04', 'F', 'N', '26-may-16', 'In Process')
+SQL> /
+
+1 row created.
+
+SQL> describe sales_order_details
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ ORDERNO                                                        VARCHAR2(6)
+ PRODUCTNO                                                      VARCHAR2(6)
+ QTYORDERED                                                     NUMBER(8)
+ PRODUCTRATE                                                    NUMBER(10,2)
+
+SQL> insert into sales_order_details values('O19001','P00001',4,525);
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into sales_order_details values('O19001', 'P07965', 2 ,8400)
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into sales_order_details values('O19001', 'P07885', 2, 5250)
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into sales_order_details values('O19002', 'P00001', 10, 525)
+SQL> /
+
+1 row created.
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* insert into sales_order_details values('O46865', 'P07868', 3, 3150)
+SQL> /
+
+1 row created.
+
+SQL> describe client
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ CLIENTNO                                                       VARCHAR2(6)
+ NAME                                                           VARCHAR2(20)
+ CITY                                                           VARCHAR2(15)
+ PINCODE                                                        NUMBER(8)
+ STATE                                                          VARCHAR2(15)
+ BALDUE                                                         NUMBER(10,5)
+
+SQL> select * from client where city='Mumbai' | 'Chennai'
+  2  ;
+select * from client where city='Mumbai' | 'Chennai'
+                                         *
+ERROR at line 1:
+ORA-00996: the concatenate operator is ||, not | 
+
+
+SQL> select * from client where city='Mumbai' or 'Chennai'
+  2  ;
+
+*
+ERROR at line 2:
+ORA-00920: invalid relational operator 
+
+
+SQL> select * from client where city='Mumbai' or city='Chennai'
+  2  ;
+
+CLIENT NAME                 CITY              PINCODE STATE              BALDUE                     
+------ -------------------- --------------- --------- --------------- ---------                     
+C01    Ivan Bayross         Mumbai              40054 Maharashtra         15000                     
+C02    Mamta Shah           Chennai            780001 Tamil Nadu              0                     
+C03    Chhaya Patel         Mumbai             400057 Maharashtra          5000                     
+C05    Harsh Desai          Mumbai             400060 Maharashtra          2000                     
+
+SQL> update client set pincode=400054 where clientono='C01';
+update client set pincode=400054 where clientono='C01'
+                                       *
+ERROR at line 1:
+ORA-00904: "CLIENTONO": invalid identifier 
+
+
+SQL> update client set pincode=400054 where clientno='C01';
+
+1 row updated.
+
+SQL> select * from client where city='Mumbai' or city='Chennai'
+  2  ;
+
+CLIENT NAME                 CITY              PINCODE STATE              BALDUE                     
+------ -------------------- --------------- --------- --------------- ---------                     
+C01    Ivan Bayross         Mumbai             400054 Maharashtra         15000                     
+C02    Mamta Shah           Chennai            780001 Tamil Nadu              0                     
+C03    Chhaya Patel         Mumbai             400057 Maharashtra          5000                     
+C05    Harsh Desai          Mumbai             400060 Maharashtra          2000                     
+
+SQL> describe salesman
+ Name                                                  Null?    Type
+ ----------------------------------------------------- -------- ------------------------------------
+ SALESMANNO                                                     VARCHAR2(6)
+ SALESMANNAME                                                   VARCHAR2(20)
+ ADDRESS1                                                       VARCHAR2(30)
+ ADDRESS2                                                       VARCHAR2(30)
+ CITY                                                           VARCHAR2(20)
+ PINCODE                                                        NUMBER(8)
+ STATE                                                          VARCHAR2(20)
+ SALAMT                                                         NUMBER(8,2)
+ TGTTOGET                                                       NUMBER(6,2)
+ YTDSALES                                                       NUMBER(6,2)
+ REMARKS                                                        VARCHAR2(60)
+
+SQL> select salesmanname from salesman where salamt=3000;
+
+SALESMANNAME                                                                                        
+--------------------                                                                                
+Aman                                                                                                
+Omkar                                                                                               
+Raj                                                                                                 
+
+SQL> select * from sales_order where orderstatus='Cancelled' or orderstatus='Fulfilled';
+
+ORDERN CLIENT ORDERDATE SALESM D B DELAYDATE ORDERSTATU                                             
+------ ------ --------- ------ - - --------- ----------                                             
+O19002 C02    25-JAN-17 S02    P N 27-JAN-17 Cancelled                                              
+O46865 C03    18-FEB-17 S03    F Y 20-FEB-17 Fulfilled                                              
+O19003 C01    03-APR-16 S01    F Y 07-APR-16 Fulfilled                                              
+O46866 C04    20-MAY-16 S02    P N 22-MAY-16 Cancelled                                              
+                                                *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended 
+
+
+SQL> select * from product where sellprice>500 and sellprice<=750;
+
+PRODUC DESCRIPTION     PROFITPERCENT UNITMEASUR QTYONHAND REORDERLVL SELLPRICE COSTPRICE            
+------ --------------- ------------- ---------- --------- ---------- --------- ---------            
+P00001 1.44 Floppies               5 Piece            100         20       525       500            
+P07865 1.22 Floppies               5 Pice             100         20       525       500            
+
+SQL> select * from product where sellprice in between 500 and 750;
+select * from product where sellprice in between 500 and 750
+                                         *
+ERROR at line 1:
+ORA-00936: missing expression 
+
+
+SQL> ed
+Wrote file afiedt.buf
+
+  1* select * from product where sellprice between 500 and 750
+SQL> /
+
+PRODUC DESCRIPTION     PROFITPERCENT UNITMEASUR QTYONHAND REORDERLVL SELLPRICE COSTPRICE            
+------ --------------- ------------- ---------- --------- ---------- --------- ---------            
+P00001 1.44 Floppies               5 Piece            100         20       525       500            
+P07865 1.22 Floppies               5 Pice             100         20       525       500            
+
+SQL> commit
+  2  ;
+
+Commit complete.
+
+SQL> spool off
