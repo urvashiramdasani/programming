@@ -1,0 +1,4 @@
+1. Hello! This is a demo for reading from file.
+1. This is the body of file.
+1. Have a nice day ahead.
+1. This is End Of File EOF.
