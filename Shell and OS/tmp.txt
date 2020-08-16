@@ -1,0 +1,614 @@
+    credits: Vansh Kamdar-Thank you for your valuable help please accept me as ur student
+        1  ls
+    2  cd desktop
+    3  cd Desktop
+    4  sudo ls
+    5  cd users
+    6  cd c
+    7  clear
+    8  ws1
+    9  ls
+   10  cd desktop
+   11  mkdir Linux
+   12  cd Linux
+   13  cd ..
+   14  mkdir urvashi
+   15  cd urvashi
+   16  cd ..
+   17  wsl
+   18  sudo apt install wsl
+   19  mkdir urvashi
+   20  mkdir urvi
+   21  rmdir urvi
+   22  rmdir urvashi
+   23  ls
+   24  rmdir Linux
+   25  ls
+   26  /etc/apt/sources.list
+   27  sudo ls
+   28  sudo mkdir urvashi
+   29  sudo ls
+   30  ls
+   31  sudo add-apt-repository universe
+   32  sudo apt update
+   33  sudo apt install wsl
+   34  cd urvashi
+   35  ls
+   36  gcc AddTwoNums.c
+   37  sudo apt install gcc
+   38  gcc AddTwoNums.c
+   39  touch tp.c
+   40  sudo touch tp.c
+   41  sudo ls
+   42  ls
+   43  gcc tp.c
+   44  sudo gcc tp.c
+   45  ./a.out
+   46  ./a.out>output.txt
+   47  sudo ./a.out>output.txt
+   48  chmod u+x ./a.out>output.txt
+   49  chmod u+x gcc tp.c
+   50  chmod u+x output.txt
+   51  chmod u+x output.txt
+   52  chmod -R a+x urvashi
+   53  cd ..
+   54  chmod -R a+x urvashi
+   55  sudo chattr -i file
+   56  cd urvashi
+   57  sudo chattr -i output.txt
+   58  sudo chattr +a output.txt
+   59  sudo gcc tp.c -o first
+   60  first
+   61  gcc first
+   62  sudo gcc tp.c -o first.c
+   63  gcc first.c
+   64  clear
+   65  first.c
+   66  ./a.out
+   67  ./a.out>output.txt
+   68  chmod 777
+   69  chmod 777 output.txt
+   70  sudo chmod 777 output.txtx
+   71  sudo chmod 777 output.txt
+   72  ./a.out>output.txt
+   73  ./a.out>>output.txt
+   74  gcc InputProgram.txt
+   75  touch InputProgram.c
+   76  sudo touch InputProgram.c
+   77  gcc InputProgram.c
+   78  sudo gcc InputProgram.c
+   79  2 3
+   80  chmod 777 InputProgram.c
+   81  sudo chmod 777 InputProgram.c
+   82  gcc InputProgram.c
+   83  sudo gcc InputProgram.c
+   84  2 3
+   85  sudo gcc InputProgram.c < input.txt
+   86  sudo touch input.txt
+   87  sudo gcc InputProgram.c < input.txt
+   88  ./a.out
+   89  ./a.out < input.txt
+   90  gcc BasicCProgram.c -o obj1
+   91  sudo gcc BasicCProgram.c -o obj1
+   92  sudo chmod 777 BasicCProgram.c 
+   93  sudo touch BasicCProgram.c
+   94  sudo chmod 777 BasicCProgram.c
+   95  gcc BasicCProgram.c -o obj1
+   96  gcc BasicCProgram.c -o obj1.c
+   97  sudo touch obj1.c
+   98  sudo chmod 777 obj1.c
+   99  gcc BasicCProgram.c -o obj1.c
+  100  gcc BasicCProgram.c -o obj1
+  101  sudo chmod 777 urvashi
+  102  cd ..
+  103  sudo chmod 777 urvashi
+  104  cd urvashi
+  105  gcc BasicCProgram.c -o obj1
+  106  gcc obj1
+  107  obj1
+  108  ./obj1
+  109  gcc InputProgram.c -o obj2
+  110  ./obj1 | ./obj2
+  111  gcc BasicCProgram.c -o obj1
+  112  ./obj1
+  113  ./obj1 | ./obj2
+  114  ls
+  115  cd ..
+  116  ls
+  117  pwd
+  118  cd urvashi
+  119  pwd
+  120  man rmdir
+  121  mkdir tp
+  122  cd tp
+  123  rmdir tp
+  124  cd ..
+  125  rmdir tp
+  126  mkdir tp
+  127  rm -d tp
+  128  cd ..
+  129  rm -r urvashi
+  130  cd urvashi
+  131  cp input.txt copy.txt
+  132  sudo add newgroup
+  133  sudo addgroup newgroup
+  134  sudo chgrp nextgroup copy.txt
+  135  sudo chgrp newgroup copy.txt
+  136  mv copy.txt copy2.txt
+  137  cat cpoy2.txt
+  138  cat copy2.txt
+  139  cat copy2.txt input.txt
+  140  who
+  141  w
+  142  whoami
+  143  passwd
+  144  tree
+  145  sudo apt install tree
+  146  tree
+  147  find ./urvashiramdasani copy2.txt
+  148  find ./urvashi copy2.txt
+  149  cd ..
+  150  find ./urvashi copy2.txt
+  151  find ./urvashi -name copy2.txt
+  152  locate copy2.txt
+  153  cd urvashi
+  154  locate copy2.txt
+  155  du urvashi
+  156  cd ..
+  157  du urvashi
+  158  du -h urvashi
+  159  cd urvashi
+  160  sort InputProgram.txt
+  161  sort InputProgram.c
+  162  sort BasicCProgram.c
+  163  cat BasicCProgram.c
+  164  cat input.txt
+  165  sort input.txt
+  166  echo Hello World
+  167  diff input.txt copy2.txt
+  168  diff output.txt copy2.txt
+  169  cmp input.txt copy2.txt
+  170  cmp input.txt output.txt
+  171  ps
+  172  kill 4869
+  173  ps
+  174  gzip input.txt
+  175  gunzip input.txt
+  176  df
+  177  du
+  178  grep 2 input.txt
+  179  grep 20 input.txt
+  180  head input.txt
+  181  tail input.txt
+  182  head BasicCProgram.c
+  183  head output.txt
+  184  wc input.txt
+  185  wc -w input.txt
+  186  $
+  187  cd vcpkg
+  188  cd vcpkg-master
+  189  cd c
+  190  cd C
+  191  cd C:/User/Urvashi
+  192  cd C:
+  193  clear
+  194  ls
+  195  cd urvashi
+  196  ls
+  197  man awk
+  198  awk info
+  199  info awk
+  200  cls
+  201  clear
+  202  ls
+  203  cat>data.txt
+  204  ls
+  205  cat data.txt
+  206  cat>data.txt
+  207  ls
+  208  echo data.txt
+  209  ls
+  210  cat data.txt
+  211  cd documents
+  212  cd..
+  213  cd ..
+  214  ls
+  215  cd /
+  216  ls
+  217  cd mnt
+  218  ls
+  219  cd c
+  220  cd documents
+  221  cd users
+  222  cd urvashi
+  223  cd documents
+  224  ls
+  225  cat data.txt
+  226  clear
+  227  awk '/a/{Marks $100}'
+  228  awk '/a/{Marks $1}'
+  229  awk '/a/{print $1}' data.txt
+  230  awk '/a/{print ;}' data.txt
+  231  cat data.txt
+  232  awk '/a/{printe;}' data.txt
+  233  awk '/e/{print;}' data.txt
+  234  awk 'T/{print;}' data.txt
+  235  awk 'T//{print;}' data.txt
+  236  awk '/T/{print;}' data.txt
+  237  awk '/t/{print;}' data.txt
+  238  awk '/100/{print;}' data.txt
+  239  awk '/0/{print;}' data.txt
+  240  awk '{print $1, $2}' data.txt
+  241  awk '{print NC==1, NC==2}' data.txt
+  242  awk '{print NR==1, N==2}' data.txt
+  243  awk '{print NR==1, NR==2}' data.txt
+  244  awk 'NR==1 NR==2 {print ;}' data.txt
+  245  awk 'NR==1,NR==2 {print ;}' data.txt
+  246  LS
+  247  sudo apt install sl
+  248  LS
+  249  sl -a
+  250  awk '/a/ {print $3}' data.txt
+  251  vim urvashi.sh
+  252  . ./urvashi.sh
+  253  vim urvashi.sh
+  254  . ./urvashi.sh
+  255  ls
+  256  awk '{print $1 "\t" $2}' data.txt
+  257  cmp final.html inputs.html
+  258  cmp -s final.html inputs.html
+  259  cmp final.html inputs.html -s
+  260  echo $?
+  261  cmp final.html final.html -s
+  262  echo $?
+  263  awk '{print $0}' data.txt
+  264  if($?==0) then echo "same" else "different"; cmp final.html inputs.html -s; echo $?
+  265  if($?==0) echo "same" 
+  266  if($?==0) then echo "same" 
+  267  if($?==0); then echo "same"; else echo "different"; fi
+  268  cmp final.html final.html -s
+  269  if($?==0); then echo "same"; else echo "different"; fi
+  270  vim ifelse.sh
+  271  . ./ifels.sh
+  272  . ./ifelse.sh
+  273  vim ifelse.sh
+  274  . ./ifelse.sh
+  275  vim ifelse.sh
+  276  . ./ifelse.sh
+  277  vim ifelse.sh
+  278  if [ $? -eq 0]; then echo "same"; else echo "not same"; fi
+  279  cmp inputs.html inputs.html -s
+  280  if [ $? -eq 0]; then echo "same"; else echo "not same"; fi
+  281  if [ $? -eq 0 ]; then echo "same"; else echo "not same"; fi
+  282  profile
+  283  echo {1..3}{1..3}
+  284  echo {1..3}{1..3}{1..3}
+  285  ls
+  286  cd /
+  287  ls
+  288  cd mnt
+  289  ls
+  290  cd c
+  291  cd users
+  292  cd urvashi
+  293  cd documents
+  294  fortune
+  295  sudo apt install fortune-mod
+  296  fortune
+  297  LS
+  298  sl -a
+  299  cd /
+  300  ls
+  301  sudo mnt
+  302  cd /
+  303  ls
+  304  cd mnt
+  305  ls
+  306  cd c
+  307  cd users
+  308  cd urvashi
+  309  cd Desktop
+  310  cd Study
+  311  cd II Year
+  312  cd IIYear
+  313  cd II-Year
+  314  cd Practicals-Os
+  315  vim permutations.sh
+  316  . ./permutations.sh
+  317  vim permutations.sh
+  318  . ./permutations.sh
+  319  vim permutations.sh
+  320  . ./permutations.sh
+  321  vim permutations.sh
+  322  . ./permutations.sh
+  323  vim permutations.sh
+  324  . ./permutations.sh
+  325  vim permutations.sh
+  326  . ./permutations.sh
+  327  vim reverse.sh
+  328  . ./permutations.sh
+  329  . ./reverse.sh
+  330  vim reverse.sh
+  331  . ./reverse.sh
+  332  vim reverse.sh
+  333  . ./reverse.sh
+  334  vim reverse.sh
+  335  . ./reverse.sh
+  336  vim reverse.sh
+  337  . ./reverse.sh
+  338  vim reverse.sh
+  339  vim file.sh
+  340  . ./file.sh
+  341  vim file.sh
+  342  vim reverse.sh
+  343  . ./reverse.sh
+  344  vim reverse.sh
+  345  . ./reverse.sh
+  346  vim reverse.sh
+  347  . ./reverse.sh
+  348  vim reverse.sh
+  349  . ./reverse.sh
+  350  cd /
+  351  ls
+  352  cd mnt
+  353  ls
+  354  cd c
+  355  cd users
+  356  cd urvashi
+  357  cd Desktop
+  358  cd Study
+  359  cd II Year
+  360  cd IIYear
+  361  cd II-Year
+  362  cd Practicals-Os
+  363  vim permutations.sh
+  364  . ./permutations.sh
+  365  vim permutations.sh
+  366  . ./permutations.sh
+  367  vim permutations.sh
+  368  . ./permutations.sh
+  369  vim permutations.sh
+  370  . ./permutations.sh
+  371  vim permutations.sh
+  372  . ./permutations.sh
+  373  vim permutations.sh
+  374  . ./permutations.sh
+  375  vim reverse.sh
+  376  . ./permutations.sh
+  377  . ./reverse.sh
+  378  vim reverse.sh
+  379  . ./reverse.sh
+  380  vim reverse.sh
+  381  . ./reverse.sh
+  382  vim reverse.sh
+  383  . ./reverse.sh
+  384  vim reverse.sh
+  385  . ./reverse.sh
+  386  vim reverse.sh
+  387  vim file.sh
+  388  . ./file.sh
+  389  vim file.sh
+  390  vim reverse.sh
+  391  . ./reverse.sh
+  392  vim reverse.sh
+  393  . ./reverse.sh
+  394  vim reverse.sh
+  395  . ./reverse.sh
+  396  vim reverse.sh
+  397  . ./reverse.sh
+  398  vim reverse.sh
+  399  . ./reverse.sh
+  400  vim reverse.sh
+  401  . ./reverse.sh
+  402  vim reverse.sh
+  403  . ./reverse.sh
+  404  vim factorial.sh
+  405  . ./factorial.sh
+  406  vim factorial.sh
+  407  . ./factorial.sh
+  408  vim factorial.sh
+  409  . ./factorial.sh
+  410  vim factorial.sh
+  411  . ./factorial.sh
+  412  vim prime.sh
+  413  . ./prime.sh
+  414  vim prime.sh
+  415  . ./prime.sh
+  416  vim prime.sh
+  417  . ./prime.sh
+  418  vim prime.sh
+  419  . ./prime.sh
+  420  vim prime.sh
+  421  . ./prime.sh
+  422  vim prime.sh
+  423  . ./prime.sh
+  424  vim prime.sh
+  425  . ./prime.sh
+  426  vim prime.sh
+  427  . ./prime.sh
+  428  vim prime.sh
+  429  . ./prime.sh
+  430  vim prime.sh
+  431  . ./prime.sh
+  432  vim file.sh
+  433  . ./file.sh
+  434  factorial
+  435  man ./
+  436  man .
+  437  help .
+  438  history
+  439  history >tmp.txt
+  440  vim tmp.txt
+  441  ls
+  442  cd /
+  443  ls
+  444  cd mnt
+  445  cd c
+  446  cd users
+  447  cd urvashi
+  448  cd desktop
+  449  cd study
+  450  cd practicals-os
+  451  touch data.txt
+  452  filename=data.txt
+  453  vim readfile.sh
+  454  . ./readfile.sh
+  455  vim readfile.sh
+  456  . ./readfile.sh
+  457  vim readfile.sh
+  458  . ./readfile.sh
+  459  vim readfile.sh
+  460  . ./readfile.sh
+  461  vim readfile.sh
+  462  . ./readfile.sh
+  463  vim readfile.sh
+  464  . ./readfile.sh
+  465  vim readfile.sh
+  466  . ./readfile.sh
+  467  vim readfile.sh
+  468  . ./readfile.sh
+  469  vim readfile.sh
+  470  . ./readfile.sh
+  471  vim readfile.sh
+  472  . ./readfile.sh
+  473  vim readfile.sh
+  474  . ./readfile.sh
+  475  vim readfile.sh
+  476  . ./readfile.sh
+  477  vim readfile.sh
+  478  . ./readfile.sh
+  479  vim readfile.sh
+  480  . ./readfile.sh
+  481  vim readfile.sh
+  482  . ./readfile.sh
+  483  vim readfile.sh
+  484  . ./readfile.sh
+  485  vim readfile.sh
+  486  . ./readfile.sh
+  487  vim readfile.sh
+  488  . ./readfile.sh
+  489  vim readfile.sh
+  490  . ./readfile.sh
+  491  vim readfile.sh
+  492  . ./readfile.sh
+  493  vim readfile.sh
+  494  . ./readfile.sh
+  495  vim readfile.sh
+  496  vim readstring.sh
+  497  . ./readstring.sh
+  498  vim readstring.sh
+  499  . ./readstring.sh
+  500  vim readstring.sh
+  501  . ./readstring.sh
+  502  vim readstring.sh
+  503  . ./readstring.sh
+  504  vim readstring.sh
+  505  str=HI
+  506  awk '{print tolower($str)}'
+  507  vim readstring.sh
+  508  awk '{print tolower($str)}'
+  509  . ./readstring.sh
+  510  vim readstring.sh
+  511  . ./readstring.sh
+  512  vim readstring.sh
+  513  vim readfile.sh
+  514  vim readstring.sh
+  515  . ./readfile.sh
+  516  vim readfile.sh
+  517  . ./readfile.sh
+  518  vim readfile.sh
+  519  . ./readfile.sh
+  520  vim readfile.sh
+  521  . ./readfile.sh
+  522  vim readfile.sh
+  523  . ./readfile.sh
+  524  vim readfile.sh
+  525  . ./readfile.sh
+  526  vim head-tail.sh
+  527  history>tmp.txt
+  528  ls
+  529  cd /
+  530  ls
+  531  cd mnt
+  532  ls
+  533  cd c
+  534  cd users
+  535  cd urvashi
+  536  cd desktop
+  537  cd study
+  538  cd practicals-os
+  539  . ./calculator.sh
+  540  ls
+  541  cd /
+  542  cd mnt
+  543  cd c
+  544  cd users
+  545  cd urvashi
+  546  cd desktop
+  547  ls
+  548  vi
+  549  cd /
+  550  cd mnt
+  551  cd c
+  552  cd users
+  553  cd urvashi
+  554  cd desktop
+  555  cd study
+  556  cd practicals-os
+  557  ls
+  558  vim permutations.sh
+  559  . ./permutations.sh
+  560  cls
+  561  ls
+  562  cd /
+  563  cd mnt
+  564  cd c
+  565  cd users
+  566  cd urvashi
+  567  cd desktop
+  568  cd study
+  569  cd practicals-os
+  570  vim head.sh
+  571  . ./head.sh
+  572  vim head.sh
+  573  . ./head.sh
+  574  vim tail.sh
+  575  . ./tail.sh
+  576  vim tail.sh
+  577  . ./tail.sh
+  578  vim tail.sh
+  579  . ./tail.sh
+  580  vim tail.sh
+  581  . ./tail.sh
+  582  vim tail.sh
+  583  . ./tail.sh
+  584  vim tail.sh
+  585  . ./tail.sh
+  586  vim tail.sh
+  587  . ./tail.sh
+  588  vim head.sh
+  589  . ./head.sh
+  590  vim head.sh
+  591  . ./head.sh
+  592  vim concatenate.sh
+  593  . ./concatenate.sh
+  594  vim concatenate.sh
+  595  . ./concatenate.sh
+  596  vim concatenate.sh
+  597  . ./concatenate.sh
+  598  vim concatenate.sh
+  599  . ./concatenate.sh
+  600  vim concatenate.sh
+  601  . ./concatenate.sh
+  602  vim concatenate.sh
+  603  . ./concatenate.sh
+  604  vim concatenate.sh
+  605  vim series.sh
+  606  vim concatenate.sh
+  607  vim series.sh
+  608  . ./concatenate.sh
+  609  vim concatenate.sh
+  610  vim series.sh
+  611  . ./series.sh
+  612  vim concatenate.sh
+  613  history > tmp.txt

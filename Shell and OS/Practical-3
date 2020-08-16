@@ -1,0 +1,46 @@
+To open vim editor directly : 
+  vim filename.sh
+  Press i to insert
+  Write your code
+  ESC + : + wq
+  To run the file : . ./filename.sh
+
+Steps to follow on opening terminal :
+  cd /
+  Cd mnt
+  Cd c 
+  And go to the directory you want to go.
+
+Awk : 
+  '/T/{print;}' data.txt - searches for ‘T’ in whole document and prints everything corresponding to it
+  awk ‘ {print $1, $2}’ data.txt - prints 1 and 2 columns (we can put “\t” between 1 and 2 to provide indentation)
+  awk 'NR==1,NR==2 {print ;}' data.txt - prints 1st and 2nd row (we can write NP after print to display the row number)
+  awk ‘{print}’ data.txt - prints everything
+  NF represents last column
+  $0 prints whole file
+
+LS or sl -a : very interesting
+If else in terminal : if [ $1 -eq $2 ]
+  > write
+  >your
+  >code
+  >here
+  >fi
+This is equivalent to if else with ; . 
+
+echo {1..3}{1..3}{1..3} prints all the permutations of 1,2,3.
+
+
+for i in 1 2 3
+do
+	for j in 1 2 3
+	do
+		for k in 1 2 3
+		do
+			if [ $i -ne $j -a $j -ne $k -a $k -ne $i ]
+			then
+				echo "$i$j$k"
+			fi
+		done
+	done
+done

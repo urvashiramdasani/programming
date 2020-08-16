@@ -1,0 +1,31 @@
+Hello, Everyone!
+This is a demo file for reading from file using shell script.
+This is Urvashi speaking.
+Have a nice day!
+Goodbye!
+Hey I am back.
+With lot more lines in file.
+To test head command in Linux.
+See you soon.
+This is the 10th line.
+This line is not printed.
+end // an enter is needed to test tail since wc counts by \n in file
+Hi Gunjan.
+I am Urvashi
+sdhvawvqwirgqvhbbasdfgqwrl
+ekvbweirgiwevbkefbv
+echo "Enter a file to be read : "
+read filename
+count=1
+#filename="data.txt"
+while read -r line;
+do
+lines=$line
+if [ "$lines" == "end" ]
+then
+break
+fi
+echo $lines>>output.txt
+count=`echo "$count + 1" | bc`
+done < $filename
+echo "The number of lines in your file is $count"
