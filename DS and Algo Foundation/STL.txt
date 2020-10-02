@@ -1,9 +1,0 @@
-STL stands for Standard Template Library. It contains containers and algorithms.
-Containers : -
-  1. Simple - pair, vector, forward list, list.
-  2. Container Adapters - stack, queue
-  3. Associative - set, map, hash tables.
-  
-Algorithms - #include <algorithm> - binary search, reverse, sort. They take beginning address and end address.
-
-Vector is a dynamic array.
