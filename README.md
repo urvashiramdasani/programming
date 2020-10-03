@@ -1,2 +1,2 @@
-For Data Structures and Algorithms, visit the Data-Structures-Algorithms Repository.
+For Data Structures, visit the Data-Structures Repository.
 All the CP questions are present in repl.it @ https://repl.it/@URVASHIRAMDASAN
