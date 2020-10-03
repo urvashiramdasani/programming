@@ -1,0 +1,6 @@
+Recursion can be direct or indirect. In direct, the function directly calls itself. 
+In indirect, the function fun1 calls another function fun2 which in turn calls fun1.
+
+Some algorithms are recursive in nature - Dynamic Programming, Backtracking, Divide and Conquer, Tower or Hanoi, DFS.
+
+Use sequnetial approach as shown in video.
