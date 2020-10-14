@@ -1,0 +1,7 @@
+It is an optimization over recusrsion. Idea is to reuse the solutions of subproblems when there are two overlapping subproblems.
+Ways to solve Dynamic Programming : -
+1. Memoization (Top Down)
+2. Tabulation (Bottom Up)
+
+1. Memoization : -
+  
