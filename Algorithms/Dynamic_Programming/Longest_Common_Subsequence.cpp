@@ -30,4 +30,17 @@ int main() {
         for(int j=0; j<100; j++) memo[i][j] = -1;
     }
     cout<<"\nLength of Longest Common Subsequence (DP) is "<<lcs_dp(s1, s2, 4, 3); // theta(mn)
+    
+    int m = s1.length(); int n = s2.length();
+    int dp[m+1][n+1];
+    for(int i=0; i<=m; i++) dp[i][0] = 0;
+    for(int j=0; j<=n; j++) dp[0][j] = 0;
+    
+    for(int i=1; i<=m; i++) {
+        for(int j=1; j<=n; j++) {
+            if(s1[i - 1] == s2[j - 1]) dp[i][j] = 1 + dp[i - 1][j - 1];
+            else dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+        }
+    }
+    cout<<"\nLength of Longest Common Subsequnce (Tabulation) is "<<dp[m][n]; // theta(mn)
 }
