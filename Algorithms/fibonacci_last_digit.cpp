@@ -31,3 +31,4 @@ int main() {
     int c = get_fibonacci_last_digit_fast(n);
     std::cout << c << '\n';
     }
+// There is so much more in fibonacci numbers. Pisano period, sum of fibonacci series etc. There also an even better way to compute fibonacci numbers.
