@@ -68,3 +68,31 @@ int main(void) {
   
   return 0;
 }
+
+// Brute Force
+// Code for Maximum Subarray Problem - Brute Force
+// #include <iostream>
+// using namespace std;
+
+// int main() {
+// 	// Declarations
+// 	int arr[] = {-2, -3, 4, -1, -2, 1, 5, -3};
+// 	int len = sizeof(arr) / sizeof(int);
+//     int sum_till_now = 0, max_till_now = 0, start, end;
+
+// 	// Generate all the subarrays of array and calculate the sum. 
+// 	// Output the maximum sum.
+// 	for(int i = 0; i < len; i++) {
+// 		sum_till_now = 0;
+// 		for(int j = i; j < len; j++) {
+// 			sum_till_now += arr[j];
+// 			if(sum_till_now > max_till_now) {
+// 				max_till_now = sum_till_now;
+// 				start = i;
+// 				end = j;
+// 			}
+// 		}
+// 	}
+// 	cout<<"Maximum sum of array is "<<max_till_now<<endl;
+// 	cout<<"Starting index : "<<start<<" and Ending index : "<<end;
+// }
