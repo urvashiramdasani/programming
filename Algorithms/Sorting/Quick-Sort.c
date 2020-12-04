@@ -1,3 +1,12 @@
+// Other partitions - Hoare, Lumato, Naive
+// Out of these, only naive is inplace
+// Write codes for these other partitions
+// Worst case time complexity O(n^2)
+// It is preferred over others because of tail recursion, in place, cache friendly, 
+// average case theta(nlogn)
+// For linked list, merge sort is used. For array, quick sort is used.
+// Intro sort is a variation where we use quick sort, insertion sort and heap sort together
+
 #include<stdio.h>
 
 int partition(int arr[],int p,int r) {
