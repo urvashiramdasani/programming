@@ -1,0 +1,102 @@
+Basic Git Commands :
+
+1. To get email of registered user : git config --get user.email
+
+2. To set the editor for commit : git config core.editor *editorname*
+
+3. To view everything : git config --list
+
+4. Add a file : git add mypage.html
+
+5. To view git status : git status
+
+6. Commit changes : git commit -m "Initial commit"
+
+7. View git logs : git log
+
+8. Add multiple files : git add .
+
+9. Directly add and commit : git commit -a -m "Added two files"    // We can also use -am in place of -a -m
+
+10. Remove a file from git : git rm --cached mypage.html
+
+11. Remove a file from the folder completely : rm mypage.html (Linux), del /f mypage.html (Windows)
+
+12. To undo the deletion of file, copy the first five (or more) characters from commit hash.
+Then run the command : git checkout 07362 mypage.html
+Similarly, to undo the modification of file, above command can be used.
+
+13. When you have modified a file but not committed it, and you want to restore the original file : git checkout .
+
+14. To view git logs in one line : git log --oneline
+
+15. To move to previous git version : git checkout 0767876 or git reset --hard 5040736
+The difference between the above two commands is : On doing reset hard, our current version becomes the latest version. Hence we cannot git checkout master. Whereas in git checkout 0767876, we can still move to the latest version. 
+
+16. To move to latest version : git checkout master
+
+17. To view the modifications done to file : git diff history.html (If color is not visible, git config --global color.ui true)
+
+18. To view changes in all files : git diff
+
+19. If we add the modified files to staged area then use : git diff --staged or git diff --cached
+
+20. To view difference between two commits : git diff 5040736 0767876
+
+21. To view the difference between last two commits : git diff HEAD HEAD~ or git diff HEAD HEAD~1
+The latest version is HEAD, HEAD~1 or HEAD~ is the second last version, HEAD~2 is the third last version.
+
+22. To see the details of current commit : git show
+
+23. To view details of any commit : git show 5040736
+
+24. To view entire history of a file : git blame mypage.html
+
+25. To get help : git help <verb> or git <verb> --help or man git  <verb> (man doesn't work in windows)
+
+26. To set lightweight tag to default commit : git tag v1.1
+
+27. To view all tags : git tag (Use git show v1.1 to view details about a tag)
+
+28. Create annotated tags : git tag -a v1.2 -m "My Version 1.2" 
+
+29. To add tag to a specific commit : git tag -a v1.0 aa9292b -m "My Version 1.0"
+
+30. View git log along with tag : git log --oneline --decorate
+
+31. Delete a tag : git tag -d v1.1
+
+32. To view all branches : git branch (Active branch would be shown by *)
+
+33. Create a new branch : git branch new-chapter
+
+34. To switch between branches : git checkout new-chapter or git checkout --force master
+
+35. Merge branches : git merge master or git merge new-chapter
+
+36. To revert the merge, we can use git reset --hard HEAD~
+
+37. To delete a branch : git branch -d new-chapter. To delete a branch without merging, use -D in place to -d.
+
+38. To stash changes : git stash save "Stashed mypage.html" If we don't specify the stash name, then it will saved with the latest commit. 
+
+39. To view stashes : git stash list
+
+40. Apply a stash : git stash apply stash@{2} (If stash id is not mentioned, b default latest stash is set) or git stash pop
+
+41. Delete a stash : git stash drop stash@{1}
+
+42. To remove all stashes at once : git stash clear	
+
+43. To view details of a stash : git stash show 
+
+44. Copy a repository : git clone <url> . (. indicates that the contents are copied in the same folder, i.e., it will not create the repository)
+
+-> Staging Area : a file that stores the changes that need to be committed.The file contents should be added
+to the staging area before committing.
+
+-> Commit is a SHA-1 hash, unique id of alphanumeric characters.
+
+-> Tagging is used to mark a commit stage as important. There are two types of tags - lightweight tag and annotated tag
+
+-> Stashing is used to save temporary changes of a branch. Used in switching branches.
