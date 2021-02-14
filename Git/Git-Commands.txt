@@ -100,3 +100,17 @@ to the staging area before committing.
 -> Tagging is used to mark a commit stage as important. There are two types of tags - lightweight tag and annotated tag
 
 -> Stashing is used to save temporary changes of a branch. Used in switching branches.
+
+Contributing to other projects:-
+1. Fork the repository.
+2. git clone https://github.com/<your-username>/<repo-name>
+3. git remote add upstream https://github.com/Team-Tomato/QP-Generator.git
+4. git checkout -b branch_name
+5. git add .
+6. git commit -m "message"
+7. git push -u origin Branch_Name
+
+If you are already working on it, update your copy before working
+1. git remote update
+2. git checkout <branch-name>
+3. git rebase upstream/<branch-name>
