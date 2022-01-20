@@ -1,6 +1,7 @@
 # Author : Urvashi Ramdasani
 # Employee ID : 1450
 # Linux Training Batch 1
+# Write a bash script to find if a number is perfect or not
 
 echo "Enter a number : "
 read num
